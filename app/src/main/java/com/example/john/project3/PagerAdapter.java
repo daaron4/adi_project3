@@ -26,10 +26,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 return new HomeFragment();
             case 1:
                 return new ListFragment();
-//            case 2:
-//                return new ContactFragment();
-//            case 3:
-//                return new AnotherFragment();
             default:
                 return null;
         }
