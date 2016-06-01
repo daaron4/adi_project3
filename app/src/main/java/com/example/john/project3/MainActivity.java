@@ -6,22 +6,29 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.john.project3.setup.DBAssetHelper;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     LocalDBHelper helper;
-    RecyclerView recyclerView;
+    ListView listView;
     CursorAdapter mCursorAdapter;
+    ArrayAdapter<String> arrayAdapter;
+    ArrayList<String> arrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
         DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
         dbSetup.getReadableDatabase();
-        recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
+        //recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
         helper = LocalDBHelper.getInstance(MainActivity.this);
         //Assigning cursor using the key from intent and helper class
         final Cursor cursor = helper.getRatings();
+
+//        arrayList = new ArrayList<>();
+//        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
+//        listView.setAdapter(arrayAdapter);
 
         if(mCursorAdapter == null){
             mCursorAdapter = new CursorAdapter(MainActivity.this, cursor, 0) {
@@ -49,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 public void bindView(View view, Context context, Cursor cursor) {
                     TextView rating = (TextView)view.findViewById(R.id.ratings_placeholder);
                     rating.setText(cursor.getString(cursor.getColumnIndex(LocalDBHelper.COL_RATING)));
+                    TextView personName = (TextView)view.findViewById(R.id.main_list_name);
+                    ImageView personImage = (ImageView)view.findViewById(R.id.main_list_image);
                 }
             };
         }
