@@ -11,11 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements ApiConnector.ApiResponseHandler {
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.list_frag_format, container, false);
+
+    }
+
+    @Override
+    public void handleResponseName(String address) {
 
     }
 }
