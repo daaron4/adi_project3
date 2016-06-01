@@ -30,7 +30,7 @@ public class ApiConnector {
     public void doRequest (int idNumber) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(
-                "https://androidbackend.herokuapp.com/profiles" + idNumber + ".json",
+                "https://androidbackend.herokuapp.com/profiles.json",
                 null,
                 new JsonHttpResponseHandler() {
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
