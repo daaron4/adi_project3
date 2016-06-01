@@ -1,20 +1,57 @@
 package com.example.john.project3;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
+import android.widget.TextView;
+
+import com.example.john.project3.setup.DBAssetHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    LocalDBHelper helper;
+    RecyclerView recyclerView;
+    CursorAdapter mCursorAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
+        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
+        dbSetup.getReadableDatabase();
+        recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
+        helper = LocalDBHelper.getInstance(MainActivity.this);
+        //Assigning cursor using the key from intent and helper class
+        final Cursor cursor = helper.getRatings();
+
+        if(mCursorAdapter == null){
+            mCursorAdapter = new CursorAdapter(MainActivity.this, cursor, 0) {
+                //Inflating the views
+                @Override
+                public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
+                    LayoutInflater layout = LayoutInflater.from(context);
+                    return layout.inflate(R.layout.list_frag_format, viewGroup, false);
+                }
+
+                @Override
+                public void bindView(View view, Context context, Cursor cursor) {
+                    TextView rating = (TextView)view.findViewById(R.id.ratings_placeholder);
+                    rating.setText(cursor.getString(cursor.getColumnIndex(LocalDBHelper.COL_RATING)));
+                }
+            };
+        }
 
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
