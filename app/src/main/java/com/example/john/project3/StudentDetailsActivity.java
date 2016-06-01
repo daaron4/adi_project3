@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 public class StudentDetailsActivity extends AppCompatActivity implements ApiConnector.ApiResponseHandler {
     LocalDBHelper helper;
@@ -21,6 +22,8 @@ public class StudentDetailsActivity extends AppCompatActivity implements ApiConn
         setContentView(R.layout.activity_student_details);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        ApiConnector.getInstance(StudentDetailsActivity.this).doRequest();
+
         helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
         if (id >= 0) {
             Cursor cursor = helper.getDescriptionById(id);
@@ -54,9 +57,13 @@ public class StudentDetailsActivity extends AppCompatActivity implements ApiConn
         helper.close();
         return myRating;
     }
-        @Override
-        public void handleResponseName (String response){
 
+    //String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
+    //String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray,
+    @Override
+        public void handleResponseName (String[] idArray,String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
+                                        String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray){
+            Toast.makeText(StudentDetailsActivity.this, nameArray + "Student Details Activity", Toast.LENGTH_SHORT).show();
         }
     }
 

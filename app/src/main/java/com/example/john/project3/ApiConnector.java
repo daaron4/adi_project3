@@ -3,6 +3,7 @@ package com.example.john.project3;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,7 +14,9 @@ import cz.msebera.android.httpclient.Header;
  */
 
 public class ApiConnector {
+    String id, title, skills, open, gitHub, ga, linkedIn, other, image, url = new String();
 
+    String name = new String();
     private static ApiConnector instance;
     private static ApiResponseHandler responseHandler;
 
@@ -27,34 +30,68 @@ public class ApiConnector {
         return instance;
     }
 
-    public void doRequest (int idNumber) {
+    public void doRequest () {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(
                 "https://androidbackend.herokuapp.com/profiles.json",
                 null,
                 new JsonHttpResponseHandler() {
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-                        String address = new String();
 
+
+
+                        String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray;
                         try {
 
                             for (int i=0; i<= response.length(); i++) {
-                                JSONObject location = (JSONObject) response.get(String.valueOf(i));
-                                address += location.getString("name");
+
+                                JSONObject location = (JSONObject) response.get(i);
+                                id += location.getString("id")+"SPACE";
+                                name += location.getString("name")+"SPACE";
+                                title += location.getString("title")+"SPACE";
+                                skills += location.getString("skills")+"SPACE";
+                                open += location.getString("open")+"SPACE";
+                                gitHub += location.getString("github")+"SPACE";
+                                ga += location.getString("ga")+"SPACE";
+                                linkedIn += location.getString("linkedin")+"SPACE";
+                                other += location.getString("other")+"SPACE";
+                                image += location.getString("image")+"SPACE";
+                                url += location.getString("url")+"SPACE";
+
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        idArray = id.split("SPACE");
+                        nameArray = name.split("SPACE");
+                        titleArray = title.split("SPACE");
+                        skillsArray = skills.split("SPACE");
+                        openArray = open.split("SPACE");
+                        gitHubArray = gitHub.split("SPACE");
+                        gaArray = ga.split("SPACE");
+                        linkedInArray = linkedIn.split("SPACE");
+                        otherArray = other.split("SPACE");
+                        imageArray = image.split("SPACE");
+                        urlArray = url.split("SPACE");
 
-                        responseHandler.handleResponseName(address);
+
+
+
+                        responseHandler.handleResponseName(idArray, nameArray, titleArray, skillsArray,openArray,gitHubArray,gaArray,linkedInArray, otherArray,imageArray,urlArray);
 
                     }
                 });
     }
 
     public interface ApiResponseHandler {
-        void handleResponseName(String address);
+        void handleResponseName(String[] idArray,String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
+                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray
+//                String[] idArray, , String[] titleArray, String[] skillsArray, String[] openArray,
+//                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray,
+//
+                                );
     }
 }
