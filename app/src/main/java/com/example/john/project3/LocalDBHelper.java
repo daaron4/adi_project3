@@ -1,14 +1,18 @@
 package com.example.john.project3;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by DarrellG on 6/1/16.
  */
 public class LocalDBHelper extends SQLiteOpenHelper{
+    String id;
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "RATINGS.db";
     public static final String RATING_TABLE_NAME = "RATINGS";
@@ -78,6 +82,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
+
         return cursor;
     }
     public Cursor getDescriptionById(int id){
@@ -98,5 +103,34 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         } else {
             return null;
         }
+    }
+    public void updateData(ArrayList<String> name,
+                            ArrayList<String> title,
+                            ArrayList<String> skills,
+                            ArrayList<String> open,
+                            ArrayList<String> github,
+                            ArrayList<String> ga,
+                            ArrayList<String> linkedin,
+                            ArrayList<String> other,
+                            ArrayList<String> image,
+                            ArrayList<String> url ) {
+        SQLiteDatabase myDB = getReadableDatabase();
+
+        for(int i = 0 ; i < name.size(); i++){
+
+            ContentValues args = new ContentValues();
+            args.put(COL_NAME, name.get(i));
+            String strFilter = "_id=?";
+            String[] selArgs = new String[]{"5"};
+            myDB.update(RATING_TABLE_NAME, args, strFilter, selArgs);
+
+        }
+
+close();
+//        ContentValues args = new ContentValues();
+//        args.put(LocalDBHelper.COL_RATING, myRating);
+//        myDB.update(helper.RATING_TABLE_NAME, args, strFilter, null);
+//        helper.close();
+//        return myRating;
     }
 }
