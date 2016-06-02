@@ -139,7 +139,8 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
         Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
 
         Toast.makeText(MainActivity.this, Storage.nameArrayList.toString(), Toast.LENGTH_SHORT).show();
-        helper.updateData(Storage.nameArrayList,
+        helper.updateData(Storage.idArrayList,
+                Storage.nameArrayList,
                 Storage.titleArrayList,
                 Storage.skillsArrayList,
                 Storage.openArrayList,
