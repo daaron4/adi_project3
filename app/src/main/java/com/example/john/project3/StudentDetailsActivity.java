@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class StudentDetailsActivity extends AppCompatActivity implements ApiConnector.ApiResponseHandler {
     LocalDBHelper helper;
     int id;
@@ -63,7 +66,25 @@ public class StudentDetailsActivity extends AppCompatActivity implements ApiConn
     @Override
         public void handleResponseName (String[] idArray,String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
                                         String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray){
-            Toast.makeText(StudentDetailsActivity.this, nameArray + "Student Details Activity", Toast.LENGTH_SHORT).show();
+
+        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
+        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
+        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
+        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
+        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
+        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
+        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
+        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
+        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
+        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
+        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+
+
+
+
+
+
+        Toast.makeText(StudentDetailsActivity.this, nameArray + "Student Details Activity", Toast.LENGTH_SHORT).show();
         }
     }
 
