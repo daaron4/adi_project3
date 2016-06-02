@@ -57,7 +57,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         return instance;
     }
 
-    private LocalDBHelper(Context context) {
+    public LocalDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -89,7 +89,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(RATING_TABLE_NAME,
-                new String[]{COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
+                new String[]{COL_ID, COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
                         COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL},
                 COL_ID+" = ?",
                 new String[]{String.valueOf(id)},
@@ -122,7 +122,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             ContentValues args = new ContentValues();
             args.put(COL_NAME, name.get(i));
             String strFilter = "_id=?";
-            String[] selArgs = new String[]{id.get(i)};
+            String[] selArgs = new String[]{String.valueOf(i+1)};
             myDB.update(RATING_TABLE_NAME, args, strFilter, selArgs);
 
         }

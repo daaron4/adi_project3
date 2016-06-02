@@ -1,11 +1,9 @@
 package com.example.john.project3;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -150,8 +148,7 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
                 Storage.otherArrayList,
                 Storage.imageArrayList,
                 Storage.urlArrayList);
-        final Cursor cursor = helper.getDescriptionById(1);
-        Log.e("Tag", cursor.toString());
+
     }
 
 }
