@@ -29,8 +29,6 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
         myView = (TextView) myFragmentView.findViewById(id.test);
 
-//        myView.setText("Hello");
-
         return myFragmentView;
     }
 //
@@ -43,6 +41,5 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         String x = Arrays.toString(nameArray);
         myView.setText(x);
-//        myView.setText(nameArray.toString());
     }
 }
