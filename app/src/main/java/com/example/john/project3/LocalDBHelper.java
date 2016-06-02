@@ -92,6 +92,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                 null,
                 null,
                 null);
+
         if(cursor.moveToFirst()){
             return cursor;
         } else {
