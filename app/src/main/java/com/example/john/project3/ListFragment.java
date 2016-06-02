@@ -28,4 +28,5 @@ public class ListFragment extends Fragment{
 //        myView.setText(Storage.nameArrayList.toString());
         return myFragmentView;
     }
+
 }

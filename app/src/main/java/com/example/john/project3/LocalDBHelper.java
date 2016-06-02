@@ -12,14 +12,37 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "RATINGS.db";
     public static final String RATING_TABLE_NAME = "RATINGS";
+
     public static final String COL_ID = "_id";
     public static final String COL_RATING = "Rating";
-    public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING};
+    public static final String COL_NAME = "name";
+    public static final String COL_TITLE = "title";
+    public static final String COL_SKILLS = "skills";
+    public static final String COL_OPEN = "open";
+    public static final String COL_GITHUB = "github";
+    public static final String COL_GA = "ga";
+    public static final String COL_LINKEDIN = "linkedin";
+    public static final String COL_OTHER = "other";
+    public static final String COL_IMAGE = "image";
+    public static final String COL_URL = "url";
+
+    public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
+            COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL};
+
     private static final String CREATE_RATING_TABLE =
             "CREATE TABLE " + RATING_TABLE_NAME +
-                    "(" +
-                    COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
-                    COL_RATING + " INTEGER )";
+                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+                    COL_RATING + " INTEGER, " +
+                    COL_NAME + " TEXT, " +
+                    COL_TITLE + " TEXT, " +
+                    COL_SKILLS + " TEXT, " +
+                    COL_OPEN + " TEXT, " +
+                    COL_GITHUB + " TEXT, " +
+                    COL_GA + " TEXT, " +
+                    COL_LINKEDIN + " TEXT, " +
+                    COL_OTHER + " TEXT, " +
+                    COL_IMAGE + " TEXT, " +
+                    COL_URL + " TEXT);";
 
     private static LocalDBHelper instance;
 
@@ -59,8 +82,10 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     }
     public Cursor getDescriptionById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.query(RATING_TABLE_NAME,
-                new String[]{COL_RATING},
+                new String[]{COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
+                        COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL},
                 COL_ID+" = ?",
                 new String[]{String.valueOf(id)},
                 null,

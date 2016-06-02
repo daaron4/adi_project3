@@ -14,6 +14,7 @@ import cz.msebera.android.httpclient.Header;
  */
 
 public class ApiConnector {
+
     String id= new String();
     String title = new String();
     String skills = new String();
@@ -25,6 +26,7 @@ public class ApiConnector {
     String image= new String();
     String url = new String();
     String name = new String();
+
     private static ApiConnector instance;
     private static ApiResponseHandler responseHandler;
 
@@ -46,8 +48,6 @@ public class ApiConnector {
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-
                         String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray;
 
                         try {
@@ -84,9 +84,6 @@ public class ApiConnector {
                         imageArray = image.split("SPACE");
                         urlArray = url.split("SPACE");
 
-
-
-
                         responseHandler.handleResponseName(idArray, nameArray, titleArray, skillsArray,openArray,gitHubArray,gaArray,linkedInArray, otherArray,imageArray,urlArray);
 
                     }
@@ -95,10 +92,6 @@ public class ApiConnector {
 
     public interface ApiResponseHandler {
         void handleResponseName(String[] idArray,String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
-                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray
-//                String[] idArray, , String[] titleArray, String[] skillsArray, String[] openArray,
-//                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray,
-//
-                                );
+                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray);
     }
 }

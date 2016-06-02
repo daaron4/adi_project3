@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
 
         DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
@@ -48,10 +46,6 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
         helper = LocalDBHelper.getInstance(MainActivity.this);
         //Assigning cursor using the key from intent and helper class
         final Cursor cursor = helper.getRatings();
-
-//        arrayList = new ArrayList<>();
-//        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
-//        listView.setAdapter(arrayAdapter);
 
         if(mCursorAdapter == null){
             mCursorAdapter = new CursorAdapter(MainActivity.this, cursor, 0) {
