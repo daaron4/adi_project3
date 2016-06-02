@@ -71,7 +71,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + RATING_TABLE_NAME);
         this.onCreate(db);
     }
-    public Cursor getRatings(){
+    public Cursor getAll(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(RATING_TABLE_NAME, // a. table

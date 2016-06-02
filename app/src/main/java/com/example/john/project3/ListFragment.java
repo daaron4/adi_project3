@@ -34,7 +34,7 @@ public class ListFragment extends Fragment{
 // Get access to the underlying writeable database
         SQLiteDatabase db = handler.getWritableDatabase();
 // Query for items from the database and get a cursor back
-        Cursor todoCursor = handler.getDescriptionById(2);
+        Cursor todoCursor = handler.getAll();
 
                 //db.rawQuery("SELECT  * FROM RATINGS", null);
 
