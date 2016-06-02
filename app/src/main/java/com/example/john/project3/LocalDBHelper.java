@@ -103,7 +103,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             return null;
         }
     }
-    public void updateData(ArrayList<String> name,
+    public void updateData(ArrayList<String> id,
+                           ArrayList<String> name,
                             ArrayList<String> title,
                             ArrayList<String> skills,
                             ArrayList<String> open,
@@ -120,7 +121,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             ContentValues args = new ContentValues();
             args.put(COL_NAME, name.get(i));
             String strFilter = "_id=?";
-            String[] selArgs = new String[]{"5"};
+            String[] selArgs = new String[]{id.get(i)};
             myDB.update(RATING_TABLE_NAME, args, strFilter, selArgs);
 
         }
