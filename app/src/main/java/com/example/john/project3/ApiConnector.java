@@ -39,9 +39,6 @@ public class ApiConnector {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
-
-
-
                         String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray;
                         try {
 
