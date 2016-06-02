@@ -16,12 +16,14 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.john.project3.setup.DBAssetHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ApiConnector.ApiResponseHandler {
 
     LocalDBHelper helper;
     ListView listView;
@@ -31,10 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ApiConnector.getInstance(MainActivity.this).doRequest();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+
 
         DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
         dbSetup.getReadableDatabase();
@@ -90,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                Toast.makeText(MainActivity.this, Storage.gaArrayList.toString(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -118,10 +126,29 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray) {
+
+        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
+        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
+        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
+        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
+        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
+        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
+        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
+        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
+        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
+        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
+        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+
+        Toast.makeText(MainActivity.this, Storage.nameArrayList.toString(), Toast.LENGTH_SHORT).show();
     }
 }

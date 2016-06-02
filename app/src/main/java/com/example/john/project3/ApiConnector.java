@@ -14,8 +14,16 @@ import cz.msebera.android.httpclient.Header;
  */
 
 public class ApiConnector {
-    String id, title, skills, open, gitHub, ga, linkedIn, other, image, url = new String();
-
+    String id= new String();
+    String title = new String();
+    String skills = new String();
+    String open = new String();
+    String gitHub = new String();
+    String ga = new String();
+    String linkedIn = new String();
+    String other = new String();
+    String image= new String();
+    String url = new String();
     String name = new String();
     private static ApiConnector instance;
     private static ApiResponseHandler responseHandler;
@@ -40,9 +48,8 @@ public class ApiConnector {
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
 
-
-
                         String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray;
+
                         try {
 
                             for (int i=0; i<= response.length(); i++) {

@@ -7,17 +7,17 @@ import java.util.ArrayList;
  */
 public class Storage {
 
-    static ArrayList<String> idArrayList = new ArrayList<>();
-    static ArrayList<String> nameArrayList = new ArrayList<>();
-    static ArrayList<String> titleArrayList = new ArrayList<>();
-    static ArrayList<String> skillsArrayList = new ArrayList<>();
-    static ArrayList<String> openArrayList = new ArrayList<>();
-    static ArrayList<String> gitHubArrayList = new ArrayList<>();
-    static ArrayList<String> gaArrayList = new ArrayList<>();
-    static ArrayList<String> linkedInArrayList = new ArrayList<>();
-    static ArrayList<String> otherArrayList = new ArrayList<>();
-    static ArrayList<String> imageArrayList = new ArrayList<>();
-    static ArrayList<String> urlArrayList = new ArrayList<>();
+    static ArrayList<String> idArrayList;
+    static ArrayList<String> nameArrayList;
+    static ArrayList<String> titleArrayList;
+    static ArrayList<String> skillsArrayList;
+    static ArrayList<String> openArrayList;
+    static ArrayList<String> gitHubArrayList;
+    static ArrayList<String> gaArrayList;
+    static ArrayList<String> linkedInArrayList;
+    static ArrayList<String> otherArrayList;
+    static ArrayList<String> imageArrayList;
+    static ArrayList<String> urlArrayList;
 
 
 
