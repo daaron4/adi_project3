@@ -11,7 +11,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.john.project3.setup.DBAssetHelper;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
         setContentView(R.layout.activity_main);
 
 
-        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
-        dbSetup.getReadableDatabase();
+//        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
+//        dbSetup.getReadableDatabase();
         //recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
         helper = LocalDBHelper.getInstance(MainActivity.this);
         //Assigning cursor using the key from intent and helper class
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
         Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
 
         Toast.makeText(MainActivity.this, Storage.nameArrayList.toString(), Toast.LENGTH_SHORT).show();
-        helper.updateData(Storage.idArrayList,
+        helper.seedData(Storage.idArrayList,
                 Storage.nameArrayList,
                 Storage.titleArrayList,
                 Storage.skillsArrayList,
