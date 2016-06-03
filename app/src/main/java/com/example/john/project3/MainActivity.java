@@ -11,14 +11,11 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements ApiConnector.ApiResponseHandler {
+public class MainActivity extends AppCompatActivity{
 
-    LocalDBHelper helper;
+
     ListView listView;
     CursorAdapter mCursorAdapter;
     ArrayAdapter<String> arrayAdapter;
@@ -27,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ApiConnector.getInstance(MainActivity.this).doRequest();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -36,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
 //        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
 //        dbSetup.getReadableDatabase();
         //recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
-        helper = LocalDBHelper.getInstance(MainActivity.this);
         //Assigning cursor using the key from intent and helper class
 
 //
@@ -121,34 +116,5 @@ public class MainActivity extends AppCompatActivity implements ApiConnector.ApiR
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray) {
-
-        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
-        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
-        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
-        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
-        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
-        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
-        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
-        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
-        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
-        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
-        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
-
-        Toast.makeText(MainActivity.this, Storage.nameArrayList.toString(), Toast.LENGTH_SHORT).show();
-        helper.seedData(Storage.idArrayList,
-                Storage.nameArrayList,
-                Storage.titleArrayList,
-                Storage.skillsArrayList,
-                Storage.openArrayList,
-                Storage.gitHubArrayList,
-                Storage.gaArrayList,
-                Storage.linkedInArrayList,
-                Storage.otherArrayList,
-                Storage.imageArrayList,
-                Storage.urlArrayList);
-
-    }
 
 }

@@ -119,14 +119,16 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         long returnId = 0;
         for(int i = 0 ; i < name.size(); i++) {
-            if (name.indexOf(id.get(i)) == -1) {
+//           if (name.indexOf(name.get(i)) == -1) {
                 values.put(COL_NAME, name.get(i));
-                String strFilter = "_id=?";
-                String[] selArgs = new String[]{String.valueOf(i + 1)};
                 returnId = myDB.insert(RATING_TABLE_NAME, null, values);
-           }
+//           }else{
+//               values.put(COL_NAME, name.get(i));
+//               String strFilter = "_id=?";
+//               String[] selArgs = new String[]{id.get(i)};
+//               returnId = myDB.update(RATING_TABLE_NAME, values, strFilter, selArgs);
 
-
+           //}
         }
             close();
 
