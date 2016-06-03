@@ -17,11 +17,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.squareup.picasso.Picasso;
-
 
 import static com.example.john.project3.R.layout;
 
