@@ -7,6 +7,7 @@ package com.example.john.project3;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,17 +31,18 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     private View myFragmentView;
 
     LocalDBHelper helper;
+    TodoCursorAdapter todoAdapter = null;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         ApiConnector.getInstance(ListFragment.this).doRequest();
         helper = LocalDBHelper.getInstance(getContext());
-
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
 
         return myFragmentView;
+
     }
 
     @Override
@@ -57,7 +59,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
         Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
         Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
-
+        SQLiteDatabase myDB = helper.getReadableDatabase();
         helper.seedData(Storage.idArrayList,
                 Storage.nameArrayList,
                 Storage.titleArrayList,
@@ -71,6 +73,10 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 Storage.urlArrayList);
 
 
+
+
+
+
         // TodoDatabaseHandler is a SQLiteOpenHelper class connecting to SQLite
         LocalDBHelper handler = new LocalDBHelper(getContext());
 // Get access to the underlying writeable database
@@ -82,8 +88,12 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         // Find ListView to populate
         ListView lvItems = (ListView) myFragmentView.findViewById(R.id.main_list_tab_two);
-        TodoCursorAdapter todoAdapter = new TodoCursorAdapter(getActivity(),todoCursor);
-        lvItems.setAdapter(todoAdapter);
+        if (todoAdapter == null) {
+            todoAdapter = new TodoCursorAdapter(getActivity(), todoCursor);
+            lvItems.setAdapter(todoAdapter);
+        } else {
+            todoAdapter.changeCursor(todoCursor);
+        }
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,14 +120,16 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
+
             return LayoutInflater.from(context).inflate(layout.list_frag_format, parent, false);
         }
+
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
 
             TextView tvBody = (TextView) view.findViewById(R.id.main_list_name);
 
-            ImageView imageView = (ImageView)view.findViewById(R.id.main_list_image);
+            ImageView imageView = (ImageView) view.findViewById(R.id.main_list_image);
 
             String body = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 
