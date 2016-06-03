@@ -34,13 +34,13 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         ApiConnector.getInstance(ListFragment.this).doRequest();
         helper = LocalDBHelper.getInstance(getContext());
-
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
 
+
         return myFragmentView;
+
     }
 
     @Override
@@ -58,8 +58,6 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
         Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
         SQLiteDatabase myDB = helper.getReadableDatabase();
-        myDB.delete(LocalDBHelper.DATA_TABLE_NAME, null, null);
-
         helper.seedData(Storage.idArrayList,
                 Storage.nameArrayList,
                 Storage.titleArrayList,
@@ -71,6 +69,9 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 Storage.otherArrayList,
                 Storage.imageArrayList,
                 Storage.urlArrayList);
+
+
+
 
 
 
@@ -101,6 +102,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
+
             return LayoutInflater.from(context).inflate(layout.list_frag_format, parent, false);
         }
 

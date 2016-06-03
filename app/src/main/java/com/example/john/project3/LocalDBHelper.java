@@ -124,8 +124,9 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
 
-        myDB.delete(DATA_TABLE_NAME, null, null);
         long returnId = 0;
+
+        myDB.delete(DATA_TABLE_NAME, null, null);
 
         for(int i = 0 ; i < name.size(); i++) {
             values.put(COL_NAME, name.get(i));
@@ -140,7 +141,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_URL, url.get(i));
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
         }
-            close();
+
+        close();
         return returnId;
     }
 }
