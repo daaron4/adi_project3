@@ -51,7 +51,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         String strFilter = "_id=" + id;
         ContentValues args = new ContentValues();
         args.put(LocalDBHelper.COL_RATING, myRating);
-        myDB.update(helper.RATING_TABLE_NAME, args, strFilter, null);
+        myDB.update(helper.DATA_TABLE_NAME, args, strFilter, null);
         helper.close();
         return myRating;
     }
