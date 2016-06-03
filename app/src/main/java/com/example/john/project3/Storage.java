@@ -19,7 +19,19 @@ public class Storage {
     static ArrayList<String> imageArrayList;
     static ArrayList<String> urlArrayList;
 
-
+    public static void clearArrays(){
+        idArrayList.clear();
+        nameArrayList.clear();
+        titleArrayList.clear();
+        skillsArrayList.clear();
+        openArrayList.clear();
+        gitHubArrayList.clear();
+        gaArrayList.clear();
+        linkedInArrayList.clear();
+        otherArrayList.clear();
+        imageArrayList.clear();
+        urlArrayList.clear();
+    }
 
 
 }
