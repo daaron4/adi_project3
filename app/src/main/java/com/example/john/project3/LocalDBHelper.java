@@ -15,7 +15,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     String id;
     private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "RATINGS_DB";
-    public static final String RATING_TABLE_NAME = "RATINGS";
+    public static final String DATA_TABLE_NAME = "RATINGS";
+    public static final String RATINGBAR_VALUE_TABLE = "BAR";
 
     public static final String COL_ID = "_id";
     public static final String COL_RATING = "Rating";
@@ -30,13 +31,12 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String COL_IMAGE = "image";
     public static final String COL_URL = "url";
 
-    public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
+    public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
             COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL};
 
-    private static final String CREATE_RATING_TABLE =
-            "CREATE TABLE " + RATING_TABLE_NAME +
+    private static final String CREATE_DATA_TABLE =
+            "CREATE TABLE " + DATA_TABLE_NAME +
                     "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL_RATING + " INTEGER, " +
                     COL_NAME + " TEXT, " +
                     COL_TITLE + " TEXT, " +
                     COL_SKILLS + " TEXT, " +
@@ -47,6 +47,11 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                     COL_OTHER + " TEXT, " +
                     COL_IMAGE + " TEXT, " +
                     COL_URL + " TEXT )";
+
+    private static final String CREATE_RATINGBAR_VALUES_TABLE =
+            "CREATE TABLE " + RATINGBAR_VALUE_TABLE +
+                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL_RATING + " INTEGER )";
 
     private static LocalDBHelper instance;
 
@@ -63,19 +68,20 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_RATING_TABLE);
+        db.execSQL(CREATE_DATA_TABLE);
+        db.execSQL(CREATE_RATINGBAR_VALUES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + RATING_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE_NAME);
         this.onCreate(db);
     }
     public Cursor getAll(){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(RATING_TABLE_NAME, // a. table
-                RATING_COLUMNS, // b. column names
+        Cursor cursor = db.query(DATA_TABLE_NAME, // a. table
+                DATA_COLUMNS, // b. column names
                 null, // c. selections
                 null, // d. selections args
                 null, // e. group by
@@ -88,8 +94,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public Cursor getDescriptionById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(RATING_TABLE_NAME,
-                new String[]{COL_ID, COL_RATING, COL_NAME, COL_TITLE, COL_SKILLS,
+        Cursor cursor = db.query(DATA_TABLE_NAME,
+                new String[]{COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
                         COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL},
                 COL_ID+" = ?",
                 new String[]{String.valueOf(id)},
@@ -118,26 +124,22 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
         long returnId = 0;
+        myDB.delete(DATA_TABLE_NAME,null,null);
         for(int i = 0 ; i < name.size(); i++) {
-//           if (name.indexOf(name.get(i)) == -1) {
-                values.put(COL_NAME, name.get(i));
-                returnId = myDB.insert(RATING_TABLE_NAME, null, values);
-//           }else{
-//               values.put(COL_NAME, name.get(i));
-//               String strFilter = "_id=?";
-//               String[] selArgs = new String[]{id.get(i)};
-//               returnId = myDB.update(RATING_TABLE_NAME, values, strFilter, selArgs);
+            values.put(COL_NAME, name.get(i));
+            values.put(COL_TITLE, title.get(i));
+            values.put(COL_SKILLS, skills.get(i));
+            values.put(COL_OPEN, open.get(i));
+            values.put(COL_GITHUB, github.get(i));
+            values.put(COL_GA, ga.get(i));
+            values.put(COL_LINKEDIN, linkedin.get(i));
+            values.put(COL_OTHER, other.get(i));
+            values.put(COL_IMAGE, image.get(i));
+            values.put(COL_URL, url.get(i));
+            returnId = myDB.insert(DATA_TABLE_NAME, null, values);
 
-           //}
         }
             close();
-
         return returnId;
-
-//        ContentValues args = new ContentValues();
-//        args.put(LocalDBHelper.COL_RATING, myRating);
-//        myDB.update(helper.RATING_TABLE_NAME, args, strFilter, null);
-//        helper.close();
-//        return myRating;
     }
 }
