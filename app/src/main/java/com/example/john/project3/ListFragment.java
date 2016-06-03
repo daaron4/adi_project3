@@ -34,6 +34,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         ApiConnector.getInstance(ListFragment.this).doRequest();
+
         helper = LocalDBHelper.getInstance(getContext());
 
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);

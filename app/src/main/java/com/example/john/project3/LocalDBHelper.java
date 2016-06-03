@@ -137,7 +137,6 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_IMAGE, image.get(i));
             values.put(COL_URL, url.get(i));
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
-
         }
             close();
         return returnId;
