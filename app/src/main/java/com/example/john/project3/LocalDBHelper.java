@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class LocalDBHelper extends SQLiteOpenHelper{
     String id;
-    private static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "RATINGS.db";
+    private static final int DATABASE_VERSION = 3;
+    public static final String DATABASE_NAME = "RATINGS_DB";
     public static final String RATING_TABLE_NAME = "RATINGS";
 
     public static final String COL_ID = "_id";
@@ -35,7 +35,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
     private static final String CREATE_RATING_TABLE =
             "CREATE TABLE " + RATING_TABLE_NAME +
-                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_RATING + " INTEGER, " +
                     COL_NAME + " TEXT, " +
                     COL_TITLE + " TEXT, " +
@@ -46,13 +46,13 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                     COL_LINKEDIN + " TEXT, " +
                     COL_OTHER + " TEXT, " +
                     COL_IMAGE + " TEXT, " +
-                    COL_URL + " TEXT);";
+                    COL_URL + " TEXT )";
 
     private static LocalDBHelper instance;
 
     public static LocalDBHelper getInstance(Context context) {
         if (instance == null) {
-            instance = new LocalDBHelper(context);
+            instance = new LocalDBHelper(context.getApplicationContext());
         }
         return instance;
     }
@@ -104,7 +104,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             return null;
         }
     }
-    public void updateData(ArrayList<String> id,
+    public long seedData(ArrayList<String> id,
                            ArrayList<String> name,
                             ArrayList<String> title,
                             ArrayList<String> skills,
@@ -116,18 +116,22 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                             ArrayList<String> image,
                             ArrayList<String> url ) {
         SQLiteDatabase myDB = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        long returnId = 0;
+        for(int i = 0 ; i < name.size(); i++) {
+            if (name.indexOf(id.get(i)) == -1) {
+                values.put(COL_NAME, name.get(i));
+                String strFilter = "_id=?";
+                String[] selArgs = new String[]{String.valueOf(i + 1)};
+                returnId = myDB.insert(RATING_TABLE_NAME, null, values);
+           }
 
-        for(int i = 0 ; i < name.size(); i++){
-
-            ContentValues args = new ContentValues();
-            args.put(COL_NAME, name.get(i));
-            String strFilter = "_id=?";
-            String[] selArgs = new String[]{String.valueOf(i+1)};
-            myDB.update(RATING_TABLE_NAME, args, strFilter, selArgs);
 
         }
+            close();
 
-close();
+        return returnId;
+
 //        ContentValues args = new ContentValues();
 //        args.put(LocalDBHelper.COL_RATING, myRating);
 //        myDB.update(helper.RATING_TABLE_NAME, args, strFilter, null);
