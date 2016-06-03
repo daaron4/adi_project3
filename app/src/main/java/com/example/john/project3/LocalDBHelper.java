@@ -139,8 +139,6 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_URL, url[i]);
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
         }
-
-
         close();
         return returnId;
     }
