@@ -131,6 +131,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
             tvBody.setText(body);
             // TODO Set the 'url' value from database
+
             Picasso.with(context).load("http://i.imgur.com/IWGvno3.jpg").into(imageView);
 
         }
