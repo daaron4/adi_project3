@@ -34,6 +34,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         ApiConnector.getInstance(ListFragment.this).doRequest();
 
         helper = LocalDBHelper.getInstance(getContext());
@@ -47,34 +48,42 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     @Override
     public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray) {
 
-        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
-        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
-        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
-        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
-        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
-        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
-        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
-        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
-        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
-        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
-        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+         ArrayList<String> idArrayList = new ArrayList<>(Arrays.asList(idArray));
+         ArrayList<String> nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
+         ArrayList<String> titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
+         ArrayList<String> skillsArrayList= new ArrayList<>(Arrays.asList(skillsArray));
+         ArrayList<String> openArrayList = new ArrayList<>(Arrays.asList(openArray));
+         ArrayList<String> gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
+         ArrayList<String> gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
+         ArrayList<String> linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
+         ArrayList<String> otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
+         ArrayList<String> imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
+         ArrayList<String> urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+
+//        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
+//        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
+//        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
+//        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
+//        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
+//        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
+//        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
+//        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
+//        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
+//        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
+//        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+
         SQLiteDatabase myDB = helper.getReadableDatabase();
-        helper.seedData(Storage.idArrayList,
-                Storage.nameArrayList,
-                Storage.titleArrayList,
-                Storage.skillsArrayList,
-                Storage.openArrayList,
-                Storage.gitHubArrayList,
-                Storage.gaArrayList,
-                Storage.linkedInArrayList,
-                Storage.otherArrayList,
-                Storage.imageArrayList,
-                Storage.urlArrayList);
-
-
-
-
-
+        helper.seedData(idArrayList,
+                nameArrayList,
+                titleArrayList,
+                skillsArrayList,
+                openArrayList,
+                gitHubArrayList,
+                gaArrayList,
+                linkedInArrayList,
+                otherArrayList,
+                imageArrayList,
+                urlArrayList);
 
         // TodoDatabaseHandler is a SQLiteOpenHelper class connecting to SQLite
         LocalDBHelper handler = new LocalDBHelper(getContext());

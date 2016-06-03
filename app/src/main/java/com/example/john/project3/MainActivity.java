@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,24 +23,23 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final LocalDBHelper helper = LocalDBHelper.getInstance(this);
-        if(Storage.nameArrayList !=null){
-            Storage.clearArrays();
-            helper.seedData(Storage.idArrayList,
-                    Storage.nameArrayList,
-                    Storage.titleArrayList,
-                    Storage.skillsArrayList,
-                    Storage.openArrayList,
-                    Storage.gitHubArrayList,
-                    Storage.gaArrayList,
-                    Storage.linkedInArrayList,
-                    Storage.otherArrayList,
-                    Storage.imageArrayList,
-                    Storage.urlArrayList);
-        }
+//        if(Storage.nameArrayList !=null){
+//            Storage.clearArrays();
+//            helper.seedData(Storage.idArrayList,
+//                    Storage.nameArrayList,
+//                    Storage.titleArrayList,
+//                    Storage.skillsArrayList,
+//                    Storage.openArrayList,
+//                    Storage.gitHubArrayList,
+//                    Storage.gaArrayList,
+//                    Storage.linkedInArrayList,
+//                    Storage.otherArrayList,
+//                    Storage.imageArrayList,
+//                    Storage.urlArrayList);
+        //}
 //        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
 //        dbSetup.getReadableDatabase();
         //recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
@@ -93,19 +91,19 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                Toast.makeText(MainActivity.this, Storage.gaArrayList.toString(), Toast.LENGTH_SHORT).show();
-                helper.seedData(Storage.idArrayList,
-                        Storage.nameArrayList,
-                        Storage.titleArrayList,
-                        Storage.skillsArrayList,
-                        Storage.openArrayList,
-                        Storage.gitHubArrayList,
-                        Storage.gaArrayList,
-                        Storage.linkedInArrayList,
-                        Storage.otherArrayList,
-                        Storage.imageArrayList,
-                        Storage.urlArrayList);
-
+//                Toast.makeText(MainActivity.this, Storage.gaArrayList.toString(), Toast.LENGTH_SHORT).show();
+//                helper.seedData(Storage.idArrayList,
+//                        Storage.nameArrayList,
+//                        Storage.titleArrayList,
+//                        Storage.skillsArrayList,
+//                        Storage.openArrayList,
+//                        Storage.gitHubArrayList,
+//                        Storage.gaArrayList,
+//                        Storage.linkedInArrayList,
+//                        Storage.otherArrayList,
+//                        Storage.imageArrayList,
+//                        Storage.urlArrayList);
+//
 
             }
 

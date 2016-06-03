@@ -110,7 +110,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             return null;
         }
     }
-    public long seedData(ArrayList<String> id,
+    public void seedData(ArrayList<String> id,
                            ArrayList<String> name,
                             ArrayList<String> title,
                             ArrayList<String> skills,
@@ -123,11 +123,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                             ArrayList<String> url ) {
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
-
-        long returnId = 0;
-
         myDB.delete(DATA_TABLE_NAME, null, null);
-
+        long returnId = 0;
         for(int i = 0 ; i < name.size(); i++) {
             values.put(COL_NAME, name.get(i));
             values.put(COL_TITLE, title.get(i));
@@ -139,10 +136,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_OTHER, other.get(i));
             values.put(COL_IMAGE, image.get(i));
             values.put(COL_URL, url.get(i));
-            returnId = myDB.insert(DATA_TABLE_NAME, null, values);
-        }
-
+            myDB.insert(DATA_TABLE_NAME, null, values);
+            }
         close();
-        return returnId;
     }
 }
