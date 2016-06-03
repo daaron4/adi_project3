@@ -6,7 +6,6 @@ package com.example.john.project3;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,14 +19,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static com.example.john.project3.R.layout;
 
 public class ListFragment extends Fragment implements ApiConnector.ApiResponseHandler {
     private View myFragmentView;
-
+    static int counter = 1;
     LocalDBHelper helper;
     TodoCursorAdapter todoAdapter = null;
 
@@ -46,32 +42,32 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     @Override
     public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray) {
 
-        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
-        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
-        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
-        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
-        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
-        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
-        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
-        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
-        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
-        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
-        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
-        SQLiteDatabase myDB = helper.getReadableDatabase();
-        helper.seedData(Storage.idArrayList,
-                Storage.nameArrayList,
-                Storage.titleArrayList,
-                Storage.skillsArrayList,
-                Storage.openArrayList,
-                Storage.gitHubArrayList,
-                Storage.gaArrayList,
-                Storage.linkedInArrayList,
-                Storage.otherArrayList,
-                Storage.imageArrayList,
-                Storage.urlArrayList);
-
-
-
+//        Storage.idArrayList = new ArrayList<>(Arrays.asList(idArray));
+//        Storage.nameArrayList = new ArrayList<>(Arrays.asList(nameArray));
+//        Storage.titleArrayList = new ArrayList<>(Arrays.asList(titleArray));
+//        Storage.skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
+//        Storage.openArrayList = new ArrayList<>(Arrays.asList(openArray));
+//        Storage.gitHubArrayList = new ArrayList<>(Arrays.asList(gitHubArray));
+//        Storage.gaArrayList = new ArrayList<>(Arrays.asList(gaArray));
+//        Storage.linkedInArrayList = new ArrayList<>(Arrays.asList(linkedInArray));
+//        Storage.otherArrayList = new ArrayList<>(Arrays.asList(otherArray));
+//        Storage.imageArrayList = new ArrayList<>(Arrays.asList(imageArray));
+//        Storage.urlArrayList = new ArrayList<>(Arrays.asList(urlArray));
+        helper.getReadableDatabase();
+        if (counter == 1) {
+            helper.seedData(idArray,
+                    nameArray,
+                    titleArray,
+                    skillsArray,
+                    openArray,
+                    gitHubArray,
+                    gaArray,
+                    linkedInArray,
+                    otherArray,
+                    imageArray,
+                    urlArray);
+            counter++;
+        }
 
 
 

@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 /**
  * Created by DarrellG on 6/1/16.
  */
@@ -110,17 +108,17 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             return null;
         }
     }
-    public long seedData(ArrayList<String> id,
-                           ArrayList<String> name,
-                            ArrayList<String> title,
-                            ArrayList<String> skills,
-                            ArrayList<String> open,
-                            ArrayList<String> github,
-                            ArrayList<String> ga,
-                            ArrayList<String> linkedin,
-                            ArrayList<String> other,
-                            ArrayList<String> image,
-                            ArrayList<String> url ) {
+    public long seedData(String[] id,
+                         String[] name,
+                         String[] title,
+                         String[] skills,
+                         String[] open,
+                         String[] github,
+                         String[] ga,
+                         String[] linkedin,
+                         String[] other,
+                         String[] image,
+                         String[] url ) {
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
 
@@ -128,19 +126,20 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
         myDB.delete(DATA_TABLE_NAME, null, null);
 
-        for(int i = 0 ; i < name.size(); i++) {
-            values.put(COL_NAME, name.get(i));
-            values.put(COL_TITLE, title.get(i));
-            values.put(COL_SKILLS, skills.get(i));
-            values.put(COL_OPEN, open.get(i));
-            values.put(COL_GITHUB, github.get(i));
-            values.put(COL_GA, ga.get(i));
-            values.put(COL_LINKEDIN, linkedin.get(i));
-            values.put(COL_OTHER, other.get(i));
-            values.put(COL_IMAGE, image.get(i));
-            values.put(COL_URL, url.get(i));
+        for(int i = 0 ; i < name.length; i++) {
+            values.put(COL_NAME, name[i]);
+            values.put(COL_TITLE, title[i]);
+            values.put(COL_SKILLS, skills[i]);
+            values.put(COL_OPEN, open[i]);
+            values.put(COL_GITHUB, github[i]);
+            values.put(COL_GA, ga[i]);
+            values.put(COL_LINKEDIN, linkedin[i]);
+            values.put(COL_OTHER, other[i]);
+            values.put(COL_IMAGE, image[i]);
+            values.put(COL_URL, url[i]);
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
         }
+
 
         close();
         return returnId;
