@@ -11,6 +11,8 @@
         android:id="@+id/card_view"
         android:layout_height="180dp"
         android:layout_width="match_parent"
+        android:foreground="?android:attr/selectableItemBackground"
+
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="6dp">
 
