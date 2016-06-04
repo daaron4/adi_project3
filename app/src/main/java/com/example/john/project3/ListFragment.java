@@ -35,9 +35,8 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         ApiConnector.getInstance(ListFragment.this).doRequest();
 
-        helper = LocalDBHelper.getInstance(getContext());
+        helper = LocalDBHelper.getInstance(getActivity());
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
-
         return myFragmentView;
 
     }
@@ -63,21 +62,22 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         }
 
         // TodoDatabaseHandler is a SQLiteOpenHelper class connecting to SQLite
-        LocalDBHelper handler = new LocalDBHelper(getContext());
 // Get access to the underlying writeable database
 //        SQLiteDatabase db = handler.getWritableDatabase();
 // Query for items from the database and get a cursor back
-        Cursor todoCursor = handler.getAll();
+        final Cursor cursor = helper.getAll();
+        final Cursor ratingCursor = helper.getRating();
 
         //db.rawQuery("SELECT  * FROM RATINGS", null);
 
         // Find ListView to populate
         ListView lvItems = (ListView) myFragmentView.findViewById(R.id.main_list_tab_two);
         if (todoAdapter == null) {
-            todoAdapter = new TodoCursorAdapter(getActivity(), todoCursor);
+            todoAdapter = new TodoCursorAdapter(getActivity(), cursor);
+
             lvItems.setAdapter(todoAdapter);
         } else {
-            todoAdapter.changeCursor(todoCursor);
+            todoAdapter.swapCursor(cursor);
         }
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,7 +92,10 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
 //                 TODO: this line below should help capture the ID associated with the database row, maybe?
 //                detailsIntent.putExtra("id", selectedCursor.getInt(selectedCursor.getColumnIndex(.....COL_ID)));
-
+                cursor.moveToPosition(position);
+               // ratingCursor.moveToPosition(position);
+                detailsIntent.putExtra("id", cursor.getInt(cursor.getColumnIndex(helper.COL_ID)));
+               // detailsIntent.putExtra("id", ratingCursor.getInt(ratingCursor.getColumnIndex(helper.COL_ID)));
                 startActivity(detailsIntent);
             }
         });
