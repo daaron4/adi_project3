@@ -8,15 +8,88 @@
     tools:context="com.example.john.project3.StudentDetailsActivity"
     tools:showIn="@layout/activity_student_details">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:layout_height="wrap_content">
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar1"/>
+        <TextView
+            android:id="@+id/skills_title"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:padding="3dp"
+            android:text="My Top Dev Skills Are:"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/details_skills"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/skills_title"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:padding="3dp"
+            android:text="@string/large_text"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/open_title"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:padding="3dp"
+            android:text="I'm Open to Joining Your Team As:"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/details_open"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/open_title"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:padding="3dp"
+            android:text="@string/large_text"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/details_ga_profile"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/details_skills"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/details_linkedin"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/details_ga_profile"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/details_github"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/details_linkedin"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/details_other"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/details_github"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/details_email"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@id/details_other"
+            android:paddingLeft="20dp"/>
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>
