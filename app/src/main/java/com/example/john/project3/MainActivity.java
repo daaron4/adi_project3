@@ -6,27 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 
 
-    ListView listView;
-    CursorAdapter mCursorAdapter;
-    ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final LocalDBHelper helper = LocalDBHelper.getInstance(this);
-
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
