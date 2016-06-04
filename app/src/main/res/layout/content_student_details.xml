@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_below="@id/ratingBar1"
             android:id="@+id/skills_title"
             android:layout_width="185dp"
             android:layout_height="40dp"
