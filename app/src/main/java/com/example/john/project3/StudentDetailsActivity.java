@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,13 +22,12 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         int id = getIntent().getIntExtra("id", -1);
 
-        Toast.makeText(StudentDetailsActivity.this, id, Toast.LENGTH_SHORT).show();
         LocalDBHelper dbHelper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
 
         Cursor detailsCursor = dbHelper.getDescriptionById(id);
 
         String captureImage = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_IMAGE));
-        String captureName = detailsCursor.getString(detailsCursor.getColumnIndexOrThrow(LocalDBHelper.COL_NAME));
+        String captureName = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_NAME));
         String captureTitle = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_TITLE));
         String captureSkills = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_SKILLS));
         String captureOpen = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OPEN));
