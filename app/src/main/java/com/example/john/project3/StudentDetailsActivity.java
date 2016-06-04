@@ -1,9 +1,16 @@
 package com.example.john.project3;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +34,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         TextView detailsGithub = (TextView)findViewById(R.id.details_github);
         TextView detailsOther = (TextView)findViewById(R.id.details_other);
         TextView detailsEmail = (TextView)findViewById(R.id.details_email);
-
+        Button button = (Button)findViewById(R.id.button);
 
         detailsImage.setImageResource(R.drawable.imgres_ga);
         detailsName.setText("George Jorge");
@@ -41,18 +48,16 @@ public class StudentDetailsActivity extends AppCompatActivity {
         detailsEmail.setText("thisemail@gmail.com");
 
         helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
-//        if (id >= 0) {
-//            Cursor cursor = helper.getDescriptionById(id);
-//            myRating = Float.parseFloat(cursor.getString(cursor.getColumnIndex(helper.COL_RATING)));
-//            RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
-//
-//            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-//                @Override
-//                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-//                    getRating(rating);
-//                }
-//            });
-//        }
+
+
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
     }
     private float getRating(float rating) {
         myRating = rating;
@@ -64,5 +69,36 @@ public class StudentDetailsActivity extends AppCompatActivity {
         helper.close();
         return myRating;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return true;
     }
+    public void showChangeLangDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.custom_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText edt = (EditText) dialogView.findViewById(R.id.edit1);
+
+        dialogBuilder.setTitle("Custom dialog");
+        dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do something with edt.getText().toString();
+            }
+        });
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //pass
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
+
+
+}
 

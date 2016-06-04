@@ -122,10 +122,10 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 TextView tvBody = (TextView) view.findViewById(R.id.main_list_name);
                 ImageView imageView = (ImageView)view.findViewById(R.id.main_list_image);
                 String body = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String imageUrl = cursor.getString(cursor.getColumnIndexOrThrow("image"));
                 tvBody.setText(body);
 
-            // TODO Set the 'url' value from database
-            Picasso.with(context).load("http://i.imgur.com/IWGvno3.jpg").into(imageView);
+            Picasso.with(context).load(imageUrl).into(imageView);
             }
     }
 
