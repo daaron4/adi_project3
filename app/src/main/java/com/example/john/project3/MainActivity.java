@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final LocalDBHelper helper = LocalDBHelper.getInstance(this);
-
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);

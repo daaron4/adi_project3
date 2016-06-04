@@ -16,7 +16,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
-
+        id = getIntent().getIntExtra("id", -1);
         ImageView detailsImage = (ImageView)findViewById(R.id.student_details_image);
         TextView detailsName = (TextView)findViewById(R.id.student_details_name);
         TextView detailsTitle = (TextView)findViewById(R.id.student_details_title);
@@ -49,18 +49,18 @@ public class StudentDetailsActivity extends AppCompatActivity {
 //            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 //                @Override
 //                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-//                    getRating(rating);
+//                    updateRating(rating);
 //                }
 //            });
 //        }
     }
-    private float getRating(float rating) {
+    private float updateRating(float rating) {
         myRating = rating;
         SQLiteDatabase myDB = helper.getReadableDatabase();
         String strFilter = "_id=" + id;
         ContentValues args = new ContentValues();
         args.put(LocalDBHelper.COL_RATING, myRating);
-        myDB.update(helper.DATA_TABLE_NAME, args, strFilter, null);
+        myDB.update(helper.RATINGBAR_VALUE_TABLE, args, strFilter, null);
         helper.close();
         return myRating;
     }
