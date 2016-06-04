@@ -26,44 +26,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final LocalDBHelper helper = LocalDBHelper.getInstance(this);
-//        if(Storage.nameArrayList !=null){
-//            Storage.clearArrays();
-//            helper.seedData(Storage.idArrayList,
-//                    Storage.nameArrayList,
-//                    Storage.titleArrayList,
-//                    Storage.skillsArrayList,
-//                    Storage.openArrayList,
-//                    Storage.gitHubArrayList,
-//                    Storage.gaArrayList,
-//                    Storage.linkedInArrayList,
-//                    Storage.otherArrayList,
-//                    Storage.imageArrayList,
-//                    Storage.urlArrayList);
-        //}
-//        DBAssetHelper dbSetup = new DBAssetHelper(MainActivity.this);
-//        dbSetup.getReadableDatabase();
-        //recyclerView = (RecyclerView) findViewById(R.id.main_list_tab_two);
-        //Assigning cursor using the key from intent and helper class
-
-//
-//        if(mCursorAdapter == null){
-//            mCursorAdapter = new CursorAdapter(MainActivity.this, cursor, 0) {
-//                //Inflating the views
-//                @Override
-//                public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
-//                    LayoutInflater layout = LayoutInflater.from(context);
-//                    return layout.inflate(R.layout.list_frag_format, viewGroup, false);
-//                }
-//
-//                @Override
-//                public void bindView(View view, Context context, Cursor cursor) {
-//                    TextView rating = (TextView)view.findViewById(R.id.ratings_placeholder);
-//                    rating.setText(cursor.getString(cursor.getColumnIndex(LocalDBHelper.COL_RATING)));
-//                    TextView personName = (TextView)view.findViewById(R.id.main_list_name);
-//                    ImageView personImage = (ImageView)view.findViewById(R.id.main_list_image);
-//                }
-//            };
-//        }
 
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
@@ -91,19 +53,6 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-//                Toast.makeText(MainActivity.this, Storage.gaArrayList.toString(), Toast.LENGTH_SHORT).show();
-//                helper.seedData(Storage.idArrayList,
-//                        Storage.nameArrayList,
-//                        Storage.titleArrayList,
-//                        Storage.skillsArrayList,
-//                        Storage.openArrayList,
-//                        Storage.gitHubArrayList,
-//                        Storage.gaArrayList,
-//                        Storage.linkedInArrayList,
-//                        Storage.otherArrayList,
-//                        Storage.imageArrayList,
-//                        Storage.urlArrayList);
-//
 
             }
 
@@ -140,10 +89,4 @@ public class MainActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
 }
