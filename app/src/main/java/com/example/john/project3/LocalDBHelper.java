@@ -108,6 +108,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             return null;
         }
     }
+
     public long seedData(String[] id,
                          String[] name,
                          String[] title,
@@ -119,6 +120,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                          String[] other,
                          String[] image,
                          String[] url ) {
+
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
 
