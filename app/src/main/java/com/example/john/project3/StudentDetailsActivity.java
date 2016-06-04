@@ -1,11 +1,14 @@
 package com.example.john.project3;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class StudentDetailsActivity extends AppCompatActivity {
     LocalDBHelper helper;
@@ -16,7 +19,24 @@ public class StudentDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
-        id = getIntent().getIntExtra("id", -1);
+
+        int id = getIntent().getIntExtra("id", -1);
+
+        LocalDBHelper dbHelper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
+
+        Cursor detailsCursor = dbHelper.getDescriptionById(id);
+
+        String captureImage = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_IMAGE));
+        String captureName = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_NAME));
+        String captureTitle = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_TITLE));
+        String captureSkills = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_SKILLS));
+        String captureOpen = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OPEN));
+        String captureGAProfile = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GA));
+        String captureLinkedIn = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_LINKEDIN));
+        String captureGithub = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GITHUB));
+        String captureOther = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OTHER));
+        String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GA));
+
         ImageView detailsImage = (ImageView)findViewById(R.id.student_details_image);
         TextView detailsName = (TextView)findViewById(R.id.student_details_name);
         TextView detailsTitle = (TextView)findViewById(R.id.student_details_title);
@@ -28,17 +48,16 @@ public class StudentDetailsActivity extends AppCompatActivity {
         TextView detailsOther = (TextView)findViewById(R.id.details_other);
         TextView detailsEmail = (TextView)findViewById(R.id.details_email);
 
-
-        detailsImage.setImageResource(R.drawable.imgres_ga);
-        detailsName.setText("George Jorge");
-        detailsTitle.setText("The Georgian");
-        detailsSkills.setText("Jumping \n Climbing \n Playing");
-        detailsOpen.setText("Fulltime \n Part Time \n Per Diem");
-        detailsGAProfile.setText("https://generalassemb.ly/");
-        detailsLinkedIn.setText("http://www.linkedin.com");
-        detailsGithub.setText("www.github.com");
-        detailsOther.setText("www.myblog.com");
-        detailsEmail.setText("thisemail@gmail.com");
+        Picasso.with(this).load(captureImage).into(detailsImage);
+        detailsName.setText(captureName);
+        detailsTitle.setText(captureTitle);
+        detailsSkills.setText(captureSkills);
+        detailsOpen.setText(captureOpen);
+        detailsGAProfile.setText(captureGAProfile);
+        detailsLinkedIn.setText(captureLinkedIn);
+        detailsGithub.setText(captureGithub);
+        detailsOther.setText(captureOther);
+        detailsEmail.setText(captureEmail);
 
         helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
 //        if (id >= 0) {
