@@ -100,13 +100,13 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
             public void onItemClick(AdapterView<?> parent, View localView, int position, long id) {
                 Intent detailsIntent = new Intent(getContext(), StudentDetailsActivity.class);
 
-//                TODO: commented-out lines below are used for animated transitions
-//                Cursor selectedCursor = (Cursor) parent.getAdapter().getItem(position);
-//                View view = localView.findViewById(R.id.card_view);
+                Cursor selectedCursor = (Cursor) parent.getAdapter().getItem(position);
+//                 TODO: commented-out lines below are used for animated transitions
+//  View view = localView.findViewById(R.id.card_view);
 //                ActivityOptionsCompat bugOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view, "moving_bug");
 
 //                 TODO: this line below should help capture the ID associated with the database row, maybe?
-//                detailsIntent.putExtra("id", selectedCursor.getInt(selectedCursor.getColumnIndex(.....COL_ID)));
+                detailsIntent.putExtra("id", selectedCursor.getInt(selectedCursor.getColumnIndex(LocalDBHelper.COL_ID)));
 
                 startActivity(detailsIntent);
             }

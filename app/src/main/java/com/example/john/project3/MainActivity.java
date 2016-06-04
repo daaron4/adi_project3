@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                Toast.makeText(MainActivity.this, Storage.gaArrayList.toString(), Toast.LENGTH_SHORT).show();
                 helper.seedData(Storage.idArrayList,
                         Storage.nameArrayList,
                         Storage.titleArrayList,
