@@ -99,31 +99,34 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     }
 
     public class TodoCursorAdapter extends CursorAdapter {
+
+        int counter;
+
         public TodoCursorAdapter(Context context, Cursor cursor) {
             super(context, cursor, 0);
         }
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            counter++;
+            if (counter % 2 == 0) {
+                return LayoutInflater.from(context).inflate(layout.list_frag_format, parent, false);
+            } else {
+                return LayoutInflater.from(context).inflate(layout.list_frag_format_right, parent, false);
+            }
 
-            return LayoutInflater.from(context).inflate(layout.list_frag_format, parent, false);
         }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+                TextView tvBody = (TextView) view.findViewById(R.id.main_list_name);
+                ImageView imageView = (ImageView)view.findViewById(R.id.main_list_image);
+                String body = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                tvBody.setText(body);
 
-            TextView tvBody = (TextView) view.findViewById(R.id.main_list_name);
-
-            ImageView imageView = (ImageView) view.findViewById(R.id.main_list_image);
-
-            String body = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-
-            tvBody.setText(body);
             // TODO Set the 'url' value from database
-
             Picasso.with(context).load("http://i.imgur.com/IWGvno3.jpg").into(imageView);
-
-        }
+            }
     }
 
 

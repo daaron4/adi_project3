@@ -22,7 +22,8 @@
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:background="@drawable/imgres_general"/>
+            android:background="@drawable/imgres_general"
+            />
     </android.support.v7.widget.Toolbar>
 
 
