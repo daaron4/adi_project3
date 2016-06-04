@@ -68,18 +68,18 @@ public class StudentDetailsActivity extends AppCompatActivity {
 //            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 //                @Override
 //                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-//                    getRating(rating);
+//                    updateRating(rating);
 //                }
 //            });
 //        }
     }
-    private float getRating(float rating) {
+    private float updateRating(float rating) {
         myRating = rating;
         SQLiteDatabase myDB = helper.getReadableDatabase();
         String strFilter = "_id=" + id;
         ContentValues args = new ContentValues();
         args.put(LocalDBHelper.COL_RATING, myRating);
-        myDB.update(helper.DATA_TABLE_NAME, args, strFilter, null);
+        myDB.update(helper.RATINGBAR_VALUE_TABLE, args, strFilter, null);
         helper.close();
         return myRating;
     }

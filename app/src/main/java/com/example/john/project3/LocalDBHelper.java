@@ -32,6 +32,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
             COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL};
 
+    public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING};
+
     private static final String CREATE_DATA_TABLE =
             "CREATE TABLE " + DATA_TABLE_NAME +
                     "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -102,6 +104,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                 null,
                 null);
 
+
         if(cursor.moveToFirst()){
             return cursor;
         } else {
@@ -129,6 +132,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         myDB.delete(DATA_TABLE_NAME, null, null);
 
         for(int i = 0 ; i < name.length; i++) {
+            values.put(COL_ID, id[i]);
             values.put(COL_NAME, name[i]);
             values.put(COL_TITLE, title[i]);
             values.put(COL_SKILLS, skills[i]);
@@ -141,9 +145,21 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_URL, url[i]);
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
         }
-
-
         close();
         return returnId;
+    }
+    public Cursor getRating(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(RATINGBAR_VALUE_TABLE, // a. table
+                RATING_COLUMNS, // b. column names
+                null, // c. selections
+                null, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
     }
 }
