@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -89,9 +90,8 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 Intent detailsIntent = new Intent(getContext(), StudentDetailsActivity.class);
 
                 Cursor selectedCursor = (Cursor) parent.getAdapter().getItem(position);
-//                 TODO: commented-out lines below are used for animated transitions
-//  View view = localView.findViewById(R.id.card_view);
-//                ActivityOptionsCompat bugOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view, "moving_bug");
+                View profilePic = localView.findViewById(R.id.main_list_image);
+                ActivityOptionsCompat profilePicTransition = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), profilePic, "moving_bug");
 
 //                 TODO: this line below should help capture the ID associated with the database row, maybe?
                 cursor.moveToPosition(position);
@@ -99,7 +99,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 detailsIntent.putExtra("id", cursor.getInt(cursor.getColumnIndex(helper.COL_ID)));
                // detailsIntent.putExtra("id", ratingCursor.getInt(ratingCursor.getColumnIndex(helper.COL_ID)));
 
-                startActivity(detailsIntent);
+                startActivity(detailsIntent, profilePicTransition.toBundle());
             }
         });
     }
