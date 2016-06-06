@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +35,9 @@ public class StudentDetailsActivity extends AppCompatActivity {
         String captureLinkedIn = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_LINKEDIN));
         String captureGithub = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GITHUB));
         String captureOther = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OTHER));
-        String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GA));
+        String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_EMAIL));
+        String capturePhone = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_PHONE));
+
 
         ImageView detailsImage = (ImageView)findViewById(R.id.student_details_image);
         TextView detailsName = (TextView)findViewById(R.id.student_details_name);

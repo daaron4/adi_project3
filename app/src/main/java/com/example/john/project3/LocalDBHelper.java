@@ -28,9 +28,11 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String COL_OTHER = "other";
     public static final String COL_IMAGE = "image";
     public static final String COL_URL = "url";
+    public static final String COL_EMAIL = "email";
+    public static final String COL_PHONE = "phone";
 
     public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
-            COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL};
+            COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL, COL_PHONE};
 
     public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING};
 
@@ -46,6 +48,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                     COL_LINKEDIN + " TEXT, " +
                     COL_OTHER + " TEXT, " +
                     COL_IMAGE + " TEXT, " +
+                    COL_EMAIL + " TEXT, " +
+                    COL_PHONE + " TEXT, " +
                     COL_URL + " TEXT )";
 
     private static final String CREATE_RATINGBAR_VALUES_TABLE =
@@ -96,7 +100,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
         Cursor cursor = db.query(DATA_TABLE_NAME,
                 new String[]{COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
-                        COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL},
+                        COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL,COL_PHONE},
                 COL_ID+" = ?",
                 new String[]{String.valueOf(id)},
                 null,
@@ -122,7 +126,10 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                          String[] linkedin,
                          String[] other,
                          String[] image,
-                         String[] url ) {
+                         String[] url,
+                         String[] email,
+                         String[] phone
+    ) {
 
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
@@ -142,6 +149,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_LINKEDIN, linkedin[i]);
             values.put(COL_OTHER, other[i]);
             values.put(COL_IMAGE, image[i]);
+            values.put(COL_EMAIL, email[i]);
+            values.put(COL_PHONE, phone[i]);
             values.put(COL_URL, url[i]);
             returnId = myDB.insert(DATA_TABLE_NAME, null, values);
         }

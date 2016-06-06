@@ -42,7 +42,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     }
 
     @Override
-    public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray) {
+    public void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray, String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray, String[] emailArray, String[] phoneArray) {
 
 
         helper.getReadableDatabase();
@@ -57,6 +57,8 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     linkedInArray,
                     otherArray,
                     imageArray,
+                    emailArray,
+                    phoneArray,
                     urlArray);
             counter++;
         }
