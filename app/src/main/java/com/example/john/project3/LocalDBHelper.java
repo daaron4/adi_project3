@@ -13,8 +13,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     String id;
     private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "RATINGS_DB";
-    public static final String DATA_TABLE_NAME = "RATINGS";
-    public static final String RATINGBAR_VALUE_TABLE = "BAR";
+    public static final String DATA_TABLE_NAME = "People";
+    public static final String RATINGBAR_VALUE_TABLE = "Rating";
 
     public static final String COL_ID = "_id";
     public static final String COL_RATING = "Rating";
@@ -31,11 +31,13 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String COL_EMAIL = "email";
     public static final String COL_PHONE = "phone";
     public static final String COL_NOTE = "note";
+    public static final String COL_RELATION_ID = "relation";
+
 
     public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
             COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL, COL_PHONE};
 
-    public static final String[] RATING_COLUMNS = {COL_ID, COL_NOTE, COL_RATING};
+    public static final String[] RATING_COLUMNS = {COL_ID, COL_NOTE, COL_RATING, COL_RELATION_ID};
 
     private static final String CREATE_DATA_TABLE =
             "CREATE TABLE " + DATA_TABLE_NAME +
@@ -56,7 +58,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     private static final String CREATE_RATINGBAR_VALUES_TABLE =
             "CREATE TABLE " + RATINGBAR_VALUE_TABLE +
                     "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NOTE + " TEXT, " +
-                    COL_RATING + " INTEGER )";
+                    COL_RATING + " INTEGER, " + COL_RELATION_ID + " INTEGER )";
 
     private static LocalDBHelper instance;
 
@@ -80,19 +82,34 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE_NAME);
+        db.execSQL(("DROP TABLE IF EXISTS" + RATINGBAR_VALUE_TABLE));
         this.onCreate(db);
     }
     public Cursor getAll(){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(DATA_TABLE_NAME, // a. table
-                DATA_COLUMNS, // b. column names
-                null, // c. selections
-                null, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
+        Cursor cursor = db.rawQuery("SELECT " + DATA_TABLE_NAME+ "." + COL_ID + ", "+
+                COL_NAME + ", "+
+                COL_GA + ", "+
+                COL_IMAGE + ", " +
+                COL_EMAIL + ", "+
+                COL_GITHUB + ", "+
+                COL_LINKEDIN + ", "+
+                COL_OPEN + ", "+
+                COL_OTHER + ", "+
+                COL_PHONE + ", "+
+                COL_SKILLS + ", "+
+                COL_TITLE + ", "+
+                COL_URL + " FROM " + DATA_TABLE_NAME + " JOIN " + RATINGBAR_VALUE_TABLE + " ON " + DATA_TABLE_NAME + "." + COL_ID + "=" + RATINGBAR_VALUE_TABLE + "." + COL_RELATION_ID, null, null);
+
+//        Cursor cursor = db.query(DATA_TABLE_NAME, // a. table
+//                DATA_COLUMNS, // b. column names
+//                null, // c. selections
+//                null, // d. selections args
+//                null, // e. group by
+//                null, // f. having
+//                null, // g. order by
+//                null); // h. limit
 
         return cursor;
     }
@@ -117,7 +134,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         }
     }
 
-    public long seedData(String[] id,
+    public void seedData(String[] id,
                          String[] name,
                          String[] title,
                          String[] skills,
@@ -134,8 +151,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
         SQLiteDatabase myDB = getReadableDatabase();
         ContentValues values = new ContentValues();
+        ContentValues rating = new ContentValues();
 
-        long returnId = 0;
 
         myDB.delete(DATA_TABLE_NAME, null, null);
 
@@ -153,10 +170,14 @@ public class LocalDBHelper extends SQLiteOpenHelper{
             values.put(COL_EMAIL, email[i]);
             values.put(COL_PHONE, phone[i]);
             values.put(COL_URL, url[i]);
-            returnId = myDB.insert(DATA_TABLE_NAME, null, values);
+            myDB.insert(DATA_TABLE_NAME, null, values);
+        }
+        for(int i = 0 ; i < name.length; i++) {
+            rating.put(COL_RELATION_ID, id[i]);
+            myDB.insert(RATINGBAR_VALUE_TABLE,null,rating);
         }
         close();
-        return returnId;
+
     }
     public Cursor getRating(){
         SQLiteDatabase db = this.getReadableDatabase();
