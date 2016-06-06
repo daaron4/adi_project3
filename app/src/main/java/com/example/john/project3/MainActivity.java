@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity{
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
             transition = new TransitionSet();
         }
-        transition.addTransition(new ChangeTransform());
+        if (transition != null) {
+            transition.addTransition(new ChangeTransform());
+        }
 
         getWindow().setSharedElementEnterTransition(transition);
         getWindow().setSharedElementReturnTransition(transition);
