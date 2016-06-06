@@ -30,11 +30,12 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String COL_URL = "url";
     public static final String COL_EMAIL = "email";
     public static final String COL_PHONE = "phone";
+    public static final String COL_NOTE = "note";
 
     public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
             COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL, COL_PHONE};
 
-    public static final String[] RATING_COLUMNS = {COL_ID, COL_RATING};
+    public static final String[] RATING_COLUMNS = {COL_ID, COL_NOTE, COL_RATING};
 
     private static final String CREATE_DATA_TABLE =
             "CREATE TABLE " + DATA_TABLE_NAME +
@@ -54,7 +55,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
     private static final String CREATE_RATINGBAR_VALUES_TABLE =
             "CREATE TABLE " + RATINGBAR_VALUE_TABLE +
-                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NOTE + " TEXT, " +
                     COL_RATING + " INTEGER )";
 
     private static LocalDBHelper instance;
