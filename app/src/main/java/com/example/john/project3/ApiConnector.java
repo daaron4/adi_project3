@@ -26,8 +26,9 @@ public class ApiConnector {
     String image= new String();
     String url = new String();
     String name = new String();
-    String email = new String();
     String phone = new String();
+    String email = new String();
+
     private static ApiConnector instance;
     private static ApiResponseHandler responseHandler;
 
@@ -49,7 +50,7 @@ public class ApiConnector {
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray, emailArray, phoneArray;
+                        String[] idArray, nameArray, otherArray, titleArray, skillsArray, openArray, gitHubArray, gaArray, linkedInArray, imageArray, urlArray, phoneArray, emailArray;
 
                         try {
 
@@ -67,8 +68,9 @@ public class ApiConnector {
                                 other += location.getString("other")+"SPACE";
                                 image += location.getString("image")+"SPACE";
                                 url += location.getString("url")+"SPACE";
-                                email += location.getString("user_email")+"SPACE";
                                 phone += location.getString("phone")+"SPACE";
+                                email += location.getString("user_email")+"SPACE";
+
                             }
 
                         } catch (JSONException e) {
@@ -85,8 +87,9 @@ public class ApiConnector {
                         otherArray = other.split("SPACE");
                         imageArray = image.split("SPACE");
                         urlArray = url.split("SPACE");
-                        emailArray = email.split("SPACE");
                         phoneArray = phone.split("SPACE");
+                        emailArray = email.split("SPACE");
+
 
 
                         responseHandler.handleResponseName(idArray, nameArray, titleArray, skillsArray,openArray,gitHubArray,gaArray,linkedInArray, otherArray,imageArray,urlArray, phoneArray,emailArray);
@@ -96,7 +99,7 @@ public class ApiConnector {
     }
 
     public interface ApiResponseHandler {
-        void handleResponseName(String[] strings, String[] array, String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
-                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray);
+        void handleResponseName(String[] idArray, String[] nameArray, String[] titleArray, String[] skillsArray, String[] openArray,
+                                String[] gitHubArray, String[] gaArray, String[] linkedInArray, String[] otherArray, String[] imageArray, String[] urlArray, String[] phoneArray, String[] emailArray);
     }
 }

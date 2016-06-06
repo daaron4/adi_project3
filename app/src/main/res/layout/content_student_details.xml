@@ -64,7 +64,7 @@
             android:layout_below="@id/details_skills"
             android:paddingLeft="20dp"/>
 
-        <TextView
+        <Button
             android:id="@+id/details_linkedin"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -84,13 +84,23 @@
             android:layout_height="30dp"
             android:layout_below="@id/details_github"
             android:paddingLeft="20dp"/>
-
-        <TextView
+        <Button
             android:id="@+id/details_email"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@id/details_other"
-            android:paddingLeft="20dp"/>
+            android:paddingLeft="20dp"
+            android:background="@color/gaYellow"
+            />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Call"
+                android:id="@+id/call_button"
+                android:background="@android:color/holo_green_light"
+                android:layout_below="@+id/details_email"
+                />
 
     <!--<Button-->
         <!--android:layout_width="match_parent"-->

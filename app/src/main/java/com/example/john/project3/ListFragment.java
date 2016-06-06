@@ -57,9 +57,10 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     linkedInArray,
                     otherArray,
                     imageArray,
+                    urlArray,
                     emailArray,
-                    phoneArray,
-                    urlArray);
+                    phoneArray
+                    );
             counter++;
         }
 

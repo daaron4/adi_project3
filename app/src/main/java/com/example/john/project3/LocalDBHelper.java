@@ -128,8 +128,8 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                          String[] other,
                          String[] image,
                          String[] url,
-                         String[] email,
-                         String[] phone
+                         String[] phone,
+                         String[] email
     ) {
 
         SQLiteDatabase myDB = getReadableDatabase();
