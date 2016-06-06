@@ -39,7 +39,7 @@
                 android:layout_marginTop="15dp"
                 android:padding="3dp"
                 android:text="Name Placeholder"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/ratings_placeholder"

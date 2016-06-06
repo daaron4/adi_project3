@@ -14,17 +14,29 @@
 
         <TextView
             android:id="@+id/skills_title"
-            android:layout_width="185dp"
+            android:gravity="center"
+            android:background="@color/gaGrey"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@id/ratingBar1"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginTop="@dimen/text_margin"
             android:padding="3dp"
-            android:text="@string/skills_header"
-            android:textSize="15sp" />
+            android:textSize="16sp"
+            android:text="@string/skills_header" />
+
+        <ImageView
+            android:id="@+id/details_robot"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/skills_title"
+            android:layout_above="@+id/details_skills"
+            android:src="@drawable/robot"
+            />
 
         <TextView
             android:id="@+id/details_skills"
+            android:background="@color/gaGrey"
             android:layout_width="match_parent"
             android:layout_height="85dp"
             android:layout_below="@id/skills_title"
@@ -32,21 +44,24 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="@dimen/text_margin"
             android:padding="3dp"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/open_title"
-            android:layout_width="match_parent"
+            android:background="@color/gaGrey"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@id/details_skills"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
             android:padding="3dp"
+            android:gravity="center"
             android:text="@string/open_header"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/details_open"
+            android:background="@color/gaGrey"
             android:layout_width="match_parent"
             android:layout_height="85dp"
             android:layout_alignParentRight="true"
@@ -55,46 +70,56 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="@dimen/text_margin"
             android:padding="3dp"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/details_ga_profile"
+            android:background="@color/gaGrey"
+            android:textSize="14sp"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/details_open"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
-            android:textAlignment="center" />
+             />
 
         <Button
             android:id="@+id/details_linkedin"
+            android:background="@color/gaGrey"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/details_ga_profile"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginRight="@dimen/text_margin" />
+            android:layout_marginRight="@dimen/text_margin"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/details_github"
+            android:background="@color/gaGrey"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/details_linkedin"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
-            android:textAlignment="center"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/details_other"
+            android:background="@color/gaGrey"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/details_github"
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
-            android:textAlignment="center"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/details_email"
@@ -104,7 +129,9 @@
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
-            android:background="@color/gaYellow" />
+            android:background="@color/gaYellow"
+            android:gravity="center"
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/call_button"
@@ -114,7 +141,9 @@
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
-            android:background="@android:color/holo_green_light"
+            android:background="@color/gaGreen"
+            android:gravity="center"
+            android:textSize="14sp"
             android:text="Call" />
 
     </RelativeLayout>
