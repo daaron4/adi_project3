@@ -1,60 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/card_view"
-        android:layout_height="180dp"
-        android:layout_width="match_parent"
         android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="6dp">
 
         <RelativeLayout
-            android:elevation="6dp"
-            android:background="@color/gaGrey"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/gaGrey"
+            android:elevation="6dp">
 
             <ImageView
                 android:id="@+id/main_list_image"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:background="#152535"
-                android:padding="5dp"
                 android:layout_margin="10dp"
-                />
+                android:background="#152535"
+                android:padding="5dp" />
 
             <TextView
                 android:id="@+id/main_list_name"
-                android:text="Name Placeholder"
-                android:layout_height="60dp"
                 android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
+                android:layout_height="66dp"
+                android:layout_toRightOf="@+id/main_list_image"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                />
+                android:layout_marginTop="15dp"
+                android:padding="3dp"
+                android:text="Name Placeholder"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/ratings_placeholder"
-                android:text="Ratings Placeholder"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/main_list_image"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="15dp"
                 android:layout_marginEnd="10dp"
-                />
+                android:padding="3dp"
+                android:text="Ratings Placeholder" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

@@ -36,24 +36,27 @@
                 android:id="@+id/main_list_name"
                 android:text="Name Placeholder"
                 android:layout_height="60dp"
-                android:layout_width="210dp"
+                android:layout_width="wrap_content"
                 android:textSize="20sp"
-                android:padding="10dp"
-                android:layout_alignParentLeft="true"
+                android:padding="3dp"
+                android:textAlignment="center"
+                android:layout_toLeftOf="@+id/main_list_image"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 />
 
             <TextView
                 android:id="@+id/ratings_placeholder"
                 android:text="Ratings Placeholder"
-                android:layout_width="210dp"
-                android:layout_height="60dp"
-                android:padding="10dp"
-                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:padding="3dp"
                 android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/main_list_image"
                 android:layout_marginBottom="15dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 />
         </RelativeLayout>
 
