@@ -1,21 +1,33 @@
 package com.example.john.project3;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.ChangeTransform;
+import android.transition.TransitionSet;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity{
 
-
-
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TransitionSet transition = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            transition = new TransitionSet();
+        }
+        transition.addTransition(new ChangeTransform());
+
+        getWindow().setSharedElementEnterTransition(transition);
+        getWindow().setSharedElementReturnTransition(transition);
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);

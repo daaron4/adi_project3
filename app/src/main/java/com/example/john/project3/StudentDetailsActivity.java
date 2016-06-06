@@ -1,10 +1,12 @@
 package com.example.john.project3;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +21,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
     int id;
     float myRating;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +59,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
 //        TextView detailsPhone = (TextView) findViewById(R.id.details_phone);
         Button callButton = (Button) findViewById(R.id.call_button);
         Button detailsEmail = (Button) findViewById(R.id.details_email);
-
-
 
         Picasso.with(this).load(captureImage).into(detailsImage);
         detailsName.setText(captureName);
@@ -104,8 +105,9 @@ public class StudentDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detailsImage.setTransitionName("moving_bug");
+        }
 
     }
     private float updateRating(float rating) {
