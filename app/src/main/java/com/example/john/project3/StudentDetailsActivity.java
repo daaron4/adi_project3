@@ -10,6 +10,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +35,8 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         Cursor detailsCursor = dbHelper.getDescriptionById(id);
 
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.robot_cartwheel);
+
         String captureImage = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_IMAGE));
         String captureName = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_NAME));
         String captureTitle = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_TITLE));
@@ -45,7 +49,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         final String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_EMAIL));
         final String capturePhone = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_PHONE));
 
-
+        ImageView robit = (ImageView)findViewById(R.id.details_robot);
         ImageView detailsImage = (ImageView) findViewById(R.id.student_details_image);
         TextView detailsName = (TextView) findViewById(R.id.student_details_name);
         TextView detailsTitle = (TextView) findViewById(R.id.student_details_title);
@@ -72,6 +76,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         detailsEmail.setText(captureEmail);
         callButton.setText(capturePhone);
 
+        robit.startAnimation(animation);
 
         helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
 
