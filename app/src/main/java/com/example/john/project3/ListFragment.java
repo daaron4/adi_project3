@@ -6,6 +6,7 @@ package com.example.john.project3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,16 +27,17 @@ import static com.example.john.project3.R.layout;
 
 public class ListFragment extends Fragment implements ApiConnector.ApiResponseHandler {
     private View myFragmentView;
-    static int counter = 1;
+    static int counter;
     LocalDBHelper helper;
     TodoCursorAdapter todoAdapter = null;
+    SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        sharedPreferences = getActivity().getSharedPreferences("ly.generalassemb.drewmahrt.tictactoe;", Context.MODE_PRIVATE);
         ApiConnector.getInstance(ListFragment.this).doRequest();
-
+        counter = sharedPreferences.getInt("counter", 1);
         helper = LocalDBHelper.getInstance(getActivity());
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
         return myFragmentView;
@@ -48,6 +50,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
         helper.getReadableDatabase();
         if (counter == 1) {
+
             helper.seedData(idArray,
                     nameArray,
                     titleArray,
@@ -63,6 +66,10 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     phoneArray
                     );
             counter++;
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("counter", counter);
+            editor.commit();
         }
 
         // TodoDatabaseHandler is a SQLiteOpenHelper class connecting to SQLite
