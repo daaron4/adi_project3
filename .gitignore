@@ -1,33 +1,3 @@
-Last login: Wed Jun 29 21:53:20 on ttys000
-Jons-MacBook-Pro:~ daaron$ pwd
-/Users/daaron
-Jons-MacBook-Pro:~ daaron$ cd Documents/AndroidProjects/adi_project3/
-Jons-MacBook-Pro:adi_project3 daaron$ ls -a
-.			adi_project3.iml	gradlew
-..			app			gradlew.bat
-.git			build			local.properties
-.gitignore		build.gradle		settings.gradle
-.gradle			gradle
-.idea			gradle.properties
-Jons-MacBook-Pro:adi_project3 daaron$ vi .gitignore 
-Jons-MacBook-Pro:adi_project3 daaron$ cd ..
-Jons-MacBook-Pro:AndroidProjects daaron$ ls
-FirstProject		MegaHugeInsulter	gson
-HeartsAndroid		adi_project3
-Jons-MacBook-Pro:AndroidProjects daaron$ cd FirstProject/
-Jons-MacBook-Pro:FirstProject daaron$ ls -a
-.			FirstProject.iml	gradlew
-..			README.md		gradlew.bat
-.DS_Store		app			images
-.git			build			local.properties
-.gitignore		build.gradle		settings.gradle
-.gradle			gradle
-.idea			gradle.properties
-Jons-MacBook-Pro:FirstProject daaron$ open .
-Jons-MacBook-Pro:FirstProject daaron$ nano .gitignore 
-
-  GNU nano 2.0.6              File: .gitignore                                  
-
 #built application files
 *.apk
 *.ap_
@@ -44,13 +14,3 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
-
-# Windows thumbnail db
-Thumbs.db*.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
-/captures
