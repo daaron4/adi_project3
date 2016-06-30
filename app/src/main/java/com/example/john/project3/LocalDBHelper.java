@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by DarrellG on 6/1/16.
  */
-public class LocalDBHelper extends SQLiteOpenHelper{
+public class LocalDBHelper extends SQLiteOpenHelper {
     String id;
     private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "RATINGS_DB";
@@ -33,7 +33,7 @@ public class LocalDBHelper extends SQLiteOpenHelper{
     public static final String COL_NOTE = "note";
     public static final String COL_RELATION_ID = "relation";
 
-
+    // ToDo: this is never used?
     public static final String[] DATA_COLUMNS = {COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
             COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL, COL_PHONE};
 
@@ -85,21 +85,22 @@ public class LocalDBHelper extends SQLiteOpenHelper{
         db.execSQL(("DROP TABLE IF EXISTS" + RATINGBAR_VALUE_TABLE));
         this.onCreate(db);
     }
-    public Cursor getAll(){
+
+    public Cursor getAll() {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT " + DATA_TABLE_NAME+ "." + COL_ID + ", "+
-                COL_NAME + ", "+
-                COL_GA + ", "+
+        Cursor cursor = db.rawQuery("SELECT " + DATA_TABLE_NAME + "." + COL_ID + ", " +
+                COL_NAME + ", " +
+                COL_GA + ", " +
                 COL_IMAGE + ", " +
-                COL_EMAIL + ", "+
-                COL_GITHUB + ", "+
-                COL_LINKEDIN + ", "+
-                COL_OPEN + ", "+
-                COL_OTHER + ", "+
-                COL_PHONE + ", "+
-                COL_SKILLS + ", "+
-                COL_TITLE + ", "+
+                COL_EMAIL + ", " +
+                COL_GITHUB + ", " +
+                COL_LINKEDIN + ", " +
+                COL_OPEN + ", " +
+                COL_OTHER + ", " +
+                COL_PHONE + ", " +
+                COL_SKILLS + ", " +
+                COL_TITLE + ", " +
                 COL_URL + " FROM " + DATA_TABLE_NAME + " JOIN " + RATINGBAR_VALUE_TABLE + " ON " + DATA_TABLE_NAME + "." + COL_ID + "=" + RATINGBAR_VALUE_TABLE + "." + COL_RELATION_ID, null, null);
 
 //        Cursor cursor = db.query(DATA_TABLE_NAME, // a. table
@@ -113,13 +114,14 @@ public class LocalDBHelper extends SQLiteOpenHelper{
 
         return cursor;
     }
-    public Cursor getDescriptionById(int id){
+
+    public Cursor getDescriptionById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(DATA_TABLE_NAME,
                 new String[]{COL_ID, COL_NAME, COL_TITLE, COL_SKILLS,
-                        COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL,COL_PHONE},
-                COL_ID+" = ?",
+                        COL_OPEN, COL_GITHUB, COL_GA, COL_LINKEDIN, COL_OTHER, COL_IMAGE, COL_URL, COL_EMAIL, COL_PHONE},
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
@@ -127,59 +129,45 @@ public class LocalDBHelper extends SQLiteOpenHelper{
                 null);
 
 
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return cursor;
         } else {
             return null;
         }
     }
 
-    public void seedData(String[] id,
-                         String[] name,
-                         String[] title,
-                         String[] skills,
-                         String[] open,
-                         String[] github,
-                         String[] ga,
-                         String[] linkedin,
-                         String[] other,
-                         String[] image,
-                         String[] url,
-                         String[] phone,
-                         String[] email
-    ) {
-
+    public void seedData(PersonModel[] data) {
         SQLiteDatabase myDB = getReadableDatabase();
+
         ContentValues values = new ContentValues();
         ContentValues rating = new ContentValues();
 
-
         myDB.delete(DATA_TABLE_NAME, null, null);
 
-        for(int i = 0 ; i < name.length; i++) {
-            values.put(COL_ID, id[i]);
-            values.put(COL_NAME, name[i]);
-            values.put(COL_TITLE, title[i]);
-            values.put(COL_SKILLS, skills[i]);
-            values.put(COL_OPEN, open[i]);
-            values.put(COL_GITHUB, github[i]);
-            values.put(COL_GA, ga[i]);
-            values.put(COL_LINKEDIN, linkedin[i]);
-            values.put(COL_OTHER, other[i]);
-            values.put(COL_IMAGE, image[i]);
-            values.put(COL_EMAIL, email[i]);
-            values.put(COL_PHONE, phone[i]);
-            values.put(COL_URL, url[i]);
+        // ToDo: should be changed when URL's are correct on API:
+        for (PersonModel aPerson : data) {
+            rating.put(COL_RELATION_ID, aPerson.getId());
+            myDB.insert(RATINGBAR_VALUE_TABLE, null, rating);
+            values.put(COL_ID, aPerson.getId());
+            values.put(COL_NAME, aPerson.getName());
+            values.put(COL_TITLE, aPerson.getTitle());
+            values.put(COL_SKILLS, aPerson.getSkills());
+            values.put(COL_OPEN, aPerson.getOpen());
+            values.put(COL_GITHUB, aPerson.getGithub());
+            values.put(COL_GA, aPerson.getGa());
+            values.put(COL_LINKEDIN, aPerson.getLinkedin());
+            values.put(COL_OTHER, aPerson.getOther());
+            values.put(COL_IMAGE, aPerson.getImage());
+            values.put(COL_EMAIL, aPerson.getUser_email());
+            values.put(COL_PHONE, aPerson.getPhone());
+            values.put(COL_URL, aPerson.getUrl());
             myDB.insert(DATA_TABLE_NAME, null, values);
         }
-        for(int i = 0 ; i < name.length; i++) {
-            rating.put(COL_RELATION_ID, id[i]);
-            myDB.insert(RATINGBAR_VALUE_TABLE,null,rating);
-        }
-        close();
-
+        myDB.close();
     }
-    public Cursor getRating(){
+
+    // ToDo: this is never used?
+    public Cursor getRating() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(RATINGBAR_VALUE_TABLE, // a. table

@@ -23,6 +23,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
     int id;
     float myRating;
 
+    // ToDo: has this been tested on older phones?
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
 
+        // ToDo: vigorous testing needed:
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,4 +29,5 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.makeramen:roundedimageview:2.2.1'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.4'
 }

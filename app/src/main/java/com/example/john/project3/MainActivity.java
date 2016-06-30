@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity{
 
+    // ToDo: has this been tested on older phones?
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,6 @@ public class MainActivity extends AppCompatActivity{
         //Set adapter to viewPager
         viewPager.setAdapter(adapter);
 
-
-
         //Set the tabs to call our PagerAdapters getItem method (that's where you need add your fragments)
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
