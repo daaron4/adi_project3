@@ -1,6 +1,5 @@
 package com.example.john.project3;
 
-import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,8 +22,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
     int id;
     float myRating;
 
-    // ToDo: has this been tested on older phones?
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

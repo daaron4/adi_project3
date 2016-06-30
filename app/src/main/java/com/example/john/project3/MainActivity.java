@@ -1,6 +1,5 @@
 package com.example.john.project3;
 
-import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -13,8 +12,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity{
 
-    // ToDo: has this been tested on older phones?
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,11 +23,15 @@ public class MainActivity extends AppCompatActivity{
             transition = new TransitionSet();
         }
         if (transition != null) {
-            transition.addTransition(new ChangeTransform());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                transition.addTransition(new ChangeTransform());
+            }
         }
 
-        getWindow().setSharedElementEnterTransition(transition);
-        getWindow().setSharedElementReturnTransition(transition);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setSharedElementEnterTransition(transition);
+            getWindow().setSharedElementReturnTransition(transition);
+        }
 
         //Reference the TabLayout in activity_main.xml and set it's three tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
