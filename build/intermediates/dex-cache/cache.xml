@@ -12,7 +12,7 @@
         jar="/Users/daaron/Documents/AndroidProjects/adi_project3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="52ddd1c291bd8c161208f316b1ea1f12f33a4bc8">
+        sha1="f76416da49c27d357f2388aff05e51c35bfe7a82">
         <dex dex="/Users/daaron/Documents/AndroidProjects/adi_project3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0a725a1112ee270bfdf15ae3eba9ce5b61fb2478/classes.dex" />
     </item>
     <item
@@ -33,7 +33,7 @@
         jar="/Users/daaron/Documents/AndroidProjects/adi_project3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="809f7d809166a4dec352a1e8180c84f749225e10">
+        sha1="ec171df1f8ff956b7c4b9fe9f5b707ca9b1ff642">
         <dex dex="/Users/daaron/Documents/AndroidProjects/adi_project3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_2553aa5a428c30067aa1fc7a0febbc1d1006e983/classes.dex" />
     </item>
     <item
