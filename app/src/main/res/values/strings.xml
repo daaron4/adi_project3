@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">General Ascendancy</string>
     <string name="adi_description">
-        "    The program covers skills including: programming with Java, XML, Android Studio, designing mobile interfaces, material design, design principles, Git, test-driven development, APIs, performance management, and developing for multiple devices."</string>
+        "The program covers skills including: programming with Java, XML, Android Studio, designing mobile interfaces, material design, design principles, Git, test-driven development, APIs, performance management, and developing for multiple devices."</string>
     <string name="skills_header">"My Top Dev Skills Are:"</string>
     <string name="open_header">"I'm Open to Joining Your Team As:"</string>
     <string name="action_settings">Settings</string>
