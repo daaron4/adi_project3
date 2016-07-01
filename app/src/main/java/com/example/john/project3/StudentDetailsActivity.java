@@ -1,10 +1,8 @@
 package com.example.john.project3;
 
-import android.annotation.TargetApi;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,28 +12,24 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 public class StudentDetailsActivity extends AppCompatActivity {
-    LocalDBHelper helper;
-    int id;
-    float myRating;
 
-    // ToDo: has this been tested on older phones?
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_details);
 
-        int id = getIntent().getIntExtra("id", -1);
+        id = getIntent().getIntExtra("id", -1);
 
-        LocalDBHelper dbHelper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
-
-        Cursor detailsCursor = dbHelper.getDescriptionById(id);
-
+        Cursor detailsCursor = LocalDBHelper.getInstance(StudentDetailsActivity.this).getDescriptionById(id);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.robot_cartwheel);
 
         String captureImage = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_IMAGE));
@@ -50,7 +44,8 @@ public class StudentDetailsActivity extends AppCompatActivity {
         final String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_EMAIL));
         final String capturePhone = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_PHONE));
 
-        ImageView robit = (ImageView)findViewById(R.id.details_robot);
+        RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
+        ImageView robit = (ImageView) findViewById(R.id.details_robot);
         ImageView detailsImage = (ImageView) findViewById(R.id.student_details_image);
         TextView detailsName = (TextView) findViewById(R.id.student_details_name);
         TextView detailsTitle = (TextView) findViewById(R.id.student_details_title);
@@ -66,6 +61,12 @@ public class StudentDetailsActivity extends AppCompatActivity {
         Button detailsEmail = (Button) findViewById(R.id.details_email);
 
         Picasso.with(this).load(captureImage).into(detailsImage);
+
+        detailsCursor = LocalDBHelper.getInstance(StudentDetailsActivity.this).getRatingAtId(id);
+        DatabaseUtils.dumpCursor(detailsCursor);
+        float captureRating = detailsCursor.getFloat(detailsCursor.getColumnIndex(LocalDBHelper.COL_RATING));
+
+        ratingBar1.setRating(captureRating);
         detailsName.setText(captureName);
         detailsTitle.setText(captureTitle);
         detailsSkills.setText(captureSkills);
@@ -79,17 +80,13 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         robit.startAnimation(animation);
 
-        helper = LocalDBHelper.getInstance(StudentDetailsActivity.this);
-
         // ToDo: vigorous testing needed:
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:" + capturePhone));
                 startActivity(callIntent);
-
             }
         });
         detailsEmail.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +95,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto",captureEmail, null));
                 startActivity(Intent.createChooser(intent, "Choose an Email client :"));
-
             }
         });
         detailsLinkedIn.setOnClickListener(new View.OnClickListener() {
@@ -108,24 +104,22 @@ public class StudentDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(captureLinkedIn));
                 startActivity(i);
-
             }
         });
 
+        ratingBar1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                LocalDBHelper.getInstance(StudentDetailsActivity.this).updateRating(id, rating);
+            }
+        });
+
+        // ToDo: what is this for?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detailsImage.setTransitionName("moving_bug");
         }
 
     }
-    private float updateRating(float rating) {
-        myRating = rating;
-        SQLiteDatabase myDB = helper.getReadableDatabase();
-        String strFilter = "_id=" + id;
-        ContentValues args = new ContentValues();
-        args.put(LocalDBHelper.COL_RATING, myRating);
-        myDB.update(helper.RATINGBAR_VALUE_TABLE, args, strFilter, null);
-        helper.close();
-        return myRating;
-    }
+
 }
 
