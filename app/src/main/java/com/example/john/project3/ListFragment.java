@@ -29,9 +29,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
     private View myFragmentView;
     // ToDo: wtf is this counter?
     static int counter;
-    LocalDBHelper helper;
-    SharedPreferences sharedPreferences;
-
+    private SharedPreferences sharedPreferences;
     private Cursor cursor;
     private CursorAdapter cursorAdapter;
 
@@ -42,7 +40,6 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         sharedPreferences = getActivity().getSharedPreferences("ly.generalassemb.drewmahrt.tictactoe;", Context.MODE_PRIVATE);
         ApiConnector.getInstance(ListFragment.this).doRequest();
         counter = sharedPreferences.getInt("counter", 1);
-        helper = LocalDBHelper.getInstance(getActivity());
         myFragmentView = inflater.inflate(layout.fragment_list, container, false);
         return myFragmentView;
 
@@ -50,10 +47,9 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
 
     @Override
     public void handleResponse(PersonModel[] data) {
-        helper.getReadableDatabase();
         // ToDo: wtf is this counter?
         if (counter == 1) {
-            helper.seedData(data);
+            LocalDBHelper.getInstance(getActivity()).seedData(data);
             counter++;
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("counter", counter);
@@ -64,7 +60,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
         // Get access to the underlying writable database
         // SQLiteDatabase db = handler.getWritableDatabase();
         // Query for items from the database and get a cursor back
-        cursor = helper.getAll();
+        cursor = LocalDBHelper.getInstance(getActivity()).getAll();
         //final Cursor ratingCursor = helper.getRating();
 
         //db.rawQuery("SELECT  * FROM RATINGS", null);
@@ -112,7 +108,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                 // TODO: this line below should help capture the ID associated with the database row, maybe?
                 cursor.moveToPosition(position);
                // ratingCursor.moveToPosition(position);
-                detailsIntent.putExtra("id", cursor.getInt(cursor.getColumnIndex(helper.COL_ID)));
+                detailsIntent.putExtra("id", cursor.getInt(cursor.getColumnIndex(LocalDBHelper.COL_ID)));
                // detailsIntent.putExtra("id", ratingCursor.getInt(ratingCursor.getColumnIndex(helper.COL_ID)));
 
                 startActivity(detailsIntent, profilePicTransition.toBundle());
