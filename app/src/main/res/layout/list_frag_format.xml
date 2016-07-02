@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -16,41 +17,48 @@
         card_view:cardElevation="6dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:elevation="6dp"
             android:background="@color/gaGrey"
-            android:elevation="6dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/main_list_image"
                 android:layout_width="160dp"
+                android:layout_alignParentLeft="true"
                 android:layout_height="160dp"
-                android:layout_margin="10dp"
                 android:background="#152535"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_margin="10dp" />
 
-            <TextView
-                android:id="@+id/main_list_name"
-                android:layout_width="wrap_content"
-                android:layout_height="66dp"
+            <LinearLayout
                 android:layout_toRightOf="@+id/main_list_image"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="15dp"
-                android:padding="3dp"
-                android:text="Name Placeholder"
-                android:textSize="18sp" />
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/ratings_placeholder"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@+id/main_list_image"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="15dp"
-                android:layout_marginEnd="10dp"
-                android:padding="3dp"
-                android:text="Ratings Placeholder" />
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/main_list_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Name Placeholder Long enough"/>
+
+                <TextView
+                    android:id="@+id/ratings_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="I am an Android developer looking to work with a team to create high quality applications. Working on Android applications is what I do 24/7, and I can't wait to do this as a profession and not a hobby. I have experience in QA, and I understand what it is like to get through a sprint when the walls are closing in." />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

@@ -9,6 +9,11 @@ import android.transition.ChangeTransform;
 import android.transition.TransitionSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
         //Reference the TabLayout in activity_main.xml and set it's three tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("List"));
+        tabLayout.addTab(tabLayout.newTab().setText("People"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
