@@ -40,7 +40,7 @@ public class OnStartUpReceiver extends BroadcastReceiver {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(1, builder.build());
 
-            MyUtilities.setTimeToGoOff("goOffAtThisTime", System.currentTimeMillis()+ 1209600000L, context);
+            MyUtilities.setTimeToGoOff("goOffAtThisTime", System.currentTimeMillis()+ 64800000L, context);
         }
         // else, recreate the timer:
         else {

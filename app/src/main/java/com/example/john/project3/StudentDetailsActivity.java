@@ -77,9 +77,9 @@ public class StudentDetailsActivity extends AppCompatActivity {
 
         ratingBar1.setRating(captureRating);
         detailsName.setText(captureName);
-        detailsTitle.setText(captureTitle);
+        detailsTitle.setText(captureOpen);
         detailsSkills.setText(captureSkills);
-        detailsOpen.setText(captureOpen);
+        detailsOpen.setText(captureTitle);
         detailsGAProfile.setText("GA Profile");
         detailsLinkedIn.setText("LinkedIn");
         detailsGithub.setText("GitHub");
