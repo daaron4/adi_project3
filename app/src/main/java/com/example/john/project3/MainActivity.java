@@ -1,5 +1,8 @@
 package com.example.john.project3;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setAlarm();
 
         TransitionSet transition = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
@@ -73,6 +78,17 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    private void setAlarm() {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        long goOffAtThisTime = System.currentTimeMillis() + 64800000L;
+        MyUtilities.setTimeToGoOff("goOffAtThisTime", goOffAtThisTime, getApplicationContext());
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, goOffAtThisTime, pendingIntent);
     }
 
     @Override

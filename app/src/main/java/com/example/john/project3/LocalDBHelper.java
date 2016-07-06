@@ -93,25 +93,13 @@ public class LocalDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COL_NOTE, "");
         values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 7);
+        values.put(COL_RELATION_ID, 12);
         db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
         values = new ContentValues();
         values.put(COL_NOTE, "");
         values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 8);
-        db.insert(RATINGBAR_VALUE_TABLE, null, values);
-
-        values = new ContentValues();
-        values.put(COL_NOTE, "");
-        values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 9);
-        db.insert(RATINGBAR_VALUE_TABLE, null, values);
-
-        values = new ContentValues();
-        values.put(COL_NOTE, "");
-        values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 10);
+        values.put(COL_RELATION_ID, 13);
         db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
     }
