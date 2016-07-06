@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -37,27 +36,37 @@ public class StudentDetailsActivity extends AppCompatActivity {
         String captureTitle = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_TITLE));
         String captureSkills = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_SKILLS));
         String captureOpen = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OPEN));
-        String captureGAProfile = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GA));
+        final String captureGAProfile = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GA));
         final String captureLinkedIn = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_LINKEDIN));
-        String captureGithub = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GITHUB));
-        String captureOther = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OTHER));
+        final String captureGithub = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_GITHUB));
+        final String captureOther = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_OTHER));
         final String captureEmail = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_EMAIL));
         final String capturePhone = detailsCursor.getString(detailsCursor.getColumnIndex(LocalDBHelper.COL_PHONE));
 
         RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
+
         ImageView robit = (ImageView) findViewById(R.id.details_robot);
+
         ImageView detailsImage = (ImageView) findViewById(R.id.student_details_image);
+
         TextView detailsName = (TextView) findViewById(R.id.student_details_name);
+
         TextView detailsTitle = (TextView) findViewById(R.id.student_details_title);
+
         TextView detailsSkills = (TextView) findViewById(R.id.details_skills);
+
         TextView detailsOpen = (TextView) findViewById(R.id.details_open);
-        TextView detailsGAProfile = (TextView) findViewById(R.id.details_ga_profile);
+
+        Button detailsGAProfile = (Button) findViewById(R.id.details_ga_profile);
+
         Button detailsLinkedIn = (Button)findViewById(R.id.details_linkedin);
-        TextView detailsGithub = (TextView) findViewById(R.id.details_github);
-        TextView detailsOther = (TextView) findViewById(R.id.details_other);
-//        TextView detailsEmail = (TextView) findViewById(R.id.details_email);
-//        TextView detailsPhone = (TextView) findViewById(R.id.details_phone);
+
+        Button detailsGithub = (Button) findViewById(R.id.details_github);
+
+        Button detailsOther = (Button) findViewById(R.id.details_other);
+
         Button callButton = (Button) findViewById(R.id.call_button);
+
         Button detailsEmail = (Button) findViewById(R.id.details_email);
 
         Picasso.with(this).load(captureImage).into(detailsImage);
@@ -71,11 +80,11 @@ public class StudentDetailsActivity extends AppCompatActivity {
         detailsTitle.setText(captureTitle);
         detailsSkills.setText(captureSkills);
         detailsOpen.setText(captureOpen);
-        detailsGAProfile.setText(captureGAProfile);
-        detailsLinkedIn.setText(captureLinkedIn);
-        detailsGithub.setText(captureGithub);
-        detailsOther.setText(captureOther);
-        detailsEmail.setText(captureEmail);
+        detailsGAProfile.setText("GA Profile");
+        detailsLinkedIn.setText("LinkedIn");
+        detailsGithub.setText("GitHub");
+        detailsOther.setText("Personal Portfolio");
+        detailsEmail.setText("E-Mail");
         callButton.setText(capturePhone);
 
         robit.startAnimation(animation);
@@ -103,6 +112,35 @@ public class StudentDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(captureLinkedIn));
+                startActivity(i);
+            }
+        });
+
+        detailsGAProfile.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(captureGAProfile));
+                startActivity(i);
+            }
+        });
+
+        detailsOther.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(captureOther));
+                startActivity(i);
+            }
+        });
+
+        detailsGithub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(captureGithub));
                 startActivity(i);
             }
         });

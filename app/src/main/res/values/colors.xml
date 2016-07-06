@@ -5,6 +5,9 @@
     <color name="colorAccent">#fa4542</color>
     <color name="blackItAll">#000000</color>
     <color name="gaGrey">#ececec</color>
+    <color name="gaDarkGrey">#DADADA</color>
     <color name="gaYellow">#fbd334</color>
     <color name="gaGreen">#20cac9</color>
+    <color name="gaButtonBlue">#47A2F8</color>
+    <color name="gaButtonBlueAccent">#1467f1</color>
 </resources>
