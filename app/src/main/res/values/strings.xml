@@ -3,7 +3,8 @@
     <string name="adi_description">
         "The program covers skills including: programming with Java, XML, Android Studio, designing mobile interfaces, material design, design principles, Git, test-driven development, APIs, performance management, and developing for multiple devices."</string>
     <string name="skills_header">"My Top Dev Skills Are:"</string>
-    <string name="open_header">"About Me"</string>
+    <string name="open_header">"I'm Open to Work:"</string>
+    <string name="about_me">About Me:</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_student_details">StudentDetailsActivity</string>
     <string name="ga_great">"Make GA Great Again!"</string>
