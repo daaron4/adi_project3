@@ -86,7 +86,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     ImageView imageView = (ImageView)view.findViewById(R.id.main_list_image);
                     String body = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                     String imageUrl = cursor.getString(cursor.getColumnIndexOrThrow("image"));
-                    tvBody.setText(body);
+                    tvBody.setText(body + "\n" + "____________");
                     Picasso.with(context).load(imageUrl).into(imageView);
                     TextView summaryView = (TextView) view.findViewById(R.id.ratings_placeholder);
                     String summary = cursor.getString(cursor.getColumnIndexOrThrow("open"));
