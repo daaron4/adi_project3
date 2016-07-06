@@ -36,7 +36,8 @@
                     android:layout_height="160dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    android:background="@color/blackItAll"
+                    android:background="@drawable/imagebackground"
+                    android:padding="5dp"
                     app:layout_collapseMode="pin"/>
 
                 <TextView

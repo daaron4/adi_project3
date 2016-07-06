@@ -27,7 +27,7 @@
                 android:layout_width="160dp"
                 android:layout_alignParentLeft="true"
                 android:layout_height="160dp"
-                android:background="#152535"
+                android:background="@drawable/imagebackground"
                 android:padding="5dp"
                 android:layout_margin="10dp" />
 
