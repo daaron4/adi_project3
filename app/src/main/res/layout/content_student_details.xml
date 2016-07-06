@@ -64,7 +64,7 @@
             android:id="@+id/details_open"
             android:background="@drawable/textbackground_details"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/open_title"
             android:layout_marginBottom="@dimen/text_margin"

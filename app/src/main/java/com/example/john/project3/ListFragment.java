@@ -89,7 +89,7 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     tvBody.setText(body + "\n" + "____________");
                     Picasso.with(context).load(imageUrl).into(imageView);
                     TextView summaryView = (TextView) view.findViewById(R.id.ratings_placeholder);
-                    String summary = cursor.getString(cursor.getColumnIndexOrThrow("open"));
+                    String summary = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                     summaryView.setText(summary);
                 }
             };
