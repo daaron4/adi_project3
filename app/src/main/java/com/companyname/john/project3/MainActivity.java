@@ -1,4 +1,4 @@
-package com.example.john.project3;
+package com.companyname.john.project3;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,11 +12,6 @@ import android.transition.ChangeTransform;
 import android.transition.TransitionSet;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity{
 

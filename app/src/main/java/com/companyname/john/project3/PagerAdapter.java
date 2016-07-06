@@ -1,4 +1,4 @@
-package com.example.john.project3;
+package com.companyname.john.project3;
 
 /**
  * Created by John on 5/31/16.

@@ -1,4 +1,4 @@
-package com.example.john.project3;
+package com.companyname.john.project3;
 
 /**
  * Created by John on 5/31/16.
@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import static com.example.john.project3.R.layout;
+import static com.companyname.john.project3.R.layout;
 
 public class ListFragment extends Fragment implements ApiConnector.ApiResponseHandler {
     private View myFragmentView;

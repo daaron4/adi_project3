@@ -1,4 +1,4 @@
-package com.example.john.project3;
+package com.companyname.john.project3;
 
 import android.app.AlarmManager;
 import android.app.Notification;

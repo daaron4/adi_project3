@@ -1,6 +1,4 @@
-package com.example.john.project3;
-
-import java.net.URL;
+package com.companyname.john.project3;
 
 /**
  * Created by daaron on 6/29/16.
