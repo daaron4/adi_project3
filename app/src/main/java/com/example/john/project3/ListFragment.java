@@ -89,8 +89,8 @@ public class ListFragment extends Fragment implements ApiConnector.ApiResponseHa
                     tvBody.setText(body + "\n" + "____________");
                     Picasso.with(context).load(imageUrl).into(imageView);
                     TextView summaryView = (TextView) view.findViewById(R.id.ratings_placeholder);
-                    String summary = cursor.getString(cursor.getColumnIndexOrThrow("open"));
-                    summaryView.setText("I am an Android developer looking to work with a team to create high quality applications. Working on Android applications is what I do 24/7, and I can't wait to do this as a profession and not a hobby. I have experience in QA, and I understand what it is like to get through a sprint when the walls are closing in.");
+                    String summary = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                    summaryView.setText(summary);
                 }
             };
             lvItems.setAdapter(cursorAdapter);

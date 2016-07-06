@@ -3,10 +3,8 @@ package com.example.john.project3;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.widget.CursorAdapter;
 
 /**
  * Created by DarrellG on 6/1/16.
@@ -93,26 +91,10 @@ public class LocalDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COL_NOTE, "");
         values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 7);
+        values.put(COL_RELATION_ID, 12);
         db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
-        values = new ContentValues();
-        values.put(COL_NOTE, "");
-        values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 8);
-        db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
-        values = new ContentValues();
-        values.put(COL_NOTE, "");
-        values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 9);
-        db.insert(RATINGBAR_VALUE_TABLE, null, values);
-
-        values = new ContentValues();
-        values.put(COL_NOTE, "");
-        values.put(COL_RATING, 0);
-        values.put(COL_RELATION_ID, 10);
-        db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
     }
 
