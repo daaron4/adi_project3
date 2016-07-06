@@ -94,8 +94,6 @@ public class LocalDBHelper extends SQLiteOpenHelper {
         values.put(COL_RELATION_ID, 12);
         db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
-
-
     }
 
 //    // ToDo: decide if this is needed:
