@@ -102,6 +102,54 @@ public class LocalDBHelper extends SQLiteOpenHelper {
         values.put(COL_RELATION_ID, 13);
         db.insert(RATINGBAR_VALUE_TABLE, null, values);
 
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 14);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 15);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 16);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 17);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 18);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 19);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 20);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
+        values = new ContentValues();
+        values.put(COL_NOTE, "");
+        values.put(COL_RATING, 0);
+        values.put(COL_RELATION_ID, 21);
+        db.insert(RATINGBAR_VALUE_TABLE, null, values);
+
     }
 
 //    // ToDo: decide if this is needed:
