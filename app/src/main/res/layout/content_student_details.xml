@@ -72,9 +72,10 @@
             android:padding="3dp"
             android:textSize="14sp" />
 
-        <TextView
+        <Button
             android:id="@+id/details_ga_profile"
             android:background="@color/gaGrey"
+            android:drawableLeft="@drawable/ga_logo_black"
             android:textSize="14sp"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -88,6 +89,7 @@
         <Button
             android:id="@+id/details_linkedin"
             android:background="@color/gaGrey"
+            android:drawableLeft="@drawable/linkedin_logo_icon"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -97,9 +99,10 @@
             android:layout_marginRight="@dimen/text_margin"
             android:textSize="14sp"/>
 
-        <TextView
+        <Button
             android:id="@+id/details_github"
             android:background="@color/gaGrey"
+            android:drawableLeft="@drawable/github_icon"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -109,9 +112,10 @@
             android:layout_marginRight="@dimen/text_margin"
             android:textSize="14sp"/>
 
-        <TextView
+        <Button
             android:id="@+id/details_other"
             android:background="@color/gaGrey"
+            android:drawableLeft="@drawable/icon_briefcase"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -130,6 +134,7 @@
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
             android:background="@color/gaYellow"
+            android:drawableLeft="@drawable/email_icon"
             android:gravity="center"
             android:textSize="14sp"/>
 
@@ -142,6 +147,7 @@
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
             android:background="@color/gaGreen"
+            android:drawableLeft="@drawable/phone_icon"
             android:gravity="center"
             android:textSize="14sp"
             android:text="Call" />
