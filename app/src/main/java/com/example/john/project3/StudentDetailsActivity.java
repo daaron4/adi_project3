@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -93,16 +94,20 @@ public class StudentDetailsActivity extends AppCompatActivity {
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + capturePhone));
-                startActivity(callIntent);
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + capturePhone));
+                    startActivity(callIntent);
+                } catch (Error e) {
+                    Toast.makeText(StudentDetailsActivity.this, "Please Check your Connection", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         detailsEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto",captureEmail, null));
+                        "mailto", captureEmail, null));
                 startActivity(Intent.createChooser(intent, "Choose an Email client :"));
             }
         });
@@ -111,7 +116,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(captureLinkedIn));
+                i.setData(Uri.parse("http://" + captureLinkedIn));
                 startActivity(i);
             }
         });
@@ -121,7 +126,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(captureGAProfile));
+                i.setData(Uri.parse("https://" + captureGAProfile));
                 startActivity(i);
             }
         });
@@ -131,7 +136,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(captureOther));
+                i.setData(Uri.parse("http://" + captureOther));
                 startActivity(i);
             }
         });
@@ -140,7 +145,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(captureGithub));
+                i.setData(Uri.parse("http://" + captureGithub));
                 startActivity(i);
             }
         });
